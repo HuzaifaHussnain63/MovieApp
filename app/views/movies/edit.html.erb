@@ -1,0 +1,17 @@
+<% if @movie && @movie.errors.any? %>
+    <% @movie.errors.full_messages.each do |msg| %>
+
+      <%= msg %></br>
+<% end %>
+<% end %>
+
+
+<%= form_for(@movie, method: 'PATCH') do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %></br></br>
+<%= f.label :description %>
+ <%= f.text_area :description, :class => "tinymce", :rows => 40, :cols => 120 %>
+  <%= tinymce %>
+  <%= f.submit "Update" %></br>
+
+<% end %>
