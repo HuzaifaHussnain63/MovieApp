@@ -1,18 +1,12 @@
 class MoviesController < ApplicationController
   before_action :is_admin?
 
-
   def index
-    if user_signed_in?
-      @movies = Movie.all
-      render 'index'
-    else
-      redirect_to new_user_session_path
-    end
+    @movies = Movie.all
   end
 
   def new
-      @movie =Movie.new
+    @movie = Movie.new
   end
 
   def create
@@ -20,12 +14,12 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movies_path
     else
-      redirect_to new_movie_path
+      render 'new'
     end
   end
 
   def edit
-    @movie=Movie.find(params[:id])
+    @movie = Movie.find(params[:id])
   end
 
   def update
@@ -37,7 +31,6 @@ class MoviesController < ApplicationController
     end
   end
 
-
   def destroy
     @movie = Movie.find(params[:id])
     if @movie.destroy
@@ -47,9 +40,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-
   end
-
 
   private
   def movie_param
@@ -58,13 +49,11 @@ class MoviesController < ApplicationController
 
   def is_admin?
     if user_signed_in?
-
       if current_user && current_user.admin == true
         return true
       else
         redirect_to users_homepage_path
       end
-
     else
       redirect_to new_user_session_path
     end

@@ -1,14 +1,13 @@
 <%= current_user.name %></br>
 
 <%= link_to 'Edit Profile', edit_user_registration_path %> </br>
-<%= link_to 'sign out',destroy_user_session_path, method: 'DELETE' %></br>
-<% @movies.each do |m| %>
-  <%= m.title %>
-  <%= link_to 'Edit', edit_movie_path(m)%>
-<%= link_to 'Delete', movie_path(m), method: :Delete%>
-<%= link_to 'Details', movie_path(m)%>
+<%= link_to 'Sign Out', destroy_user_session_path, method: 'DELETE' %></br>movie
 
-</br>
-
+<% @movies.each do |movie| %>
+  <%= movie.title %>
+  <%= link_to 'Edit', edit_movie_path(movie) %>
+  <%= link_to 'Delete', movie_path(movie), method: 'Delete' %>
+  <%= link_to 'Details', movie_path(movie) %></br>
 <% end %></br>
+
 <%= link_to 'add movie', new_movie_path %> </br>

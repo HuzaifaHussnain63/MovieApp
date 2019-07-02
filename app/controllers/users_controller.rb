@@ -6,10 +6,6 @@ class UsersController < ApplicationController
 
   end
 
-
-
-
-
   private
   def login_confirm
     if !user_signed_in?
