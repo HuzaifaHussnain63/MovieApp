@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
-  before_action :is_admin?
+
+  before_action :require_login
 
   def index
     @movies = Movie.all
@@ -19,22 +20,42 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
+
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+    else
+      flash[:danger] = "No movie found with this id"
+      redirect_to home_homepage_path
+    end
+
   end
 
   def update
-    @movie = Movie.find(params[:id])
-    if @movie.update(movie_param)
-      redirect_to movies_path
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+      if @movie.update(movie_param)
+        redirect_to movies_path
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      flash[:danger] = "No movie found with this id"
+      redirect_to home_homepage_path
     end
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
-    if @movie.destroy
-      redirect_to movies_path
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+      if @movie.destroy()
+        redirect_to movies_path
+      else
+        flash[:danger] = "Could not delete the movie"
+        render movies_path
+      end
+    else
+      flash[:danger] = "No movie found with this id"
+      redirect_to home_homepage_path
     end
   end
 
@@ -47,14 +68,11 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :description)
   end
 
-  def is_admin?
+  def require_login
     if user_signed_in?
-      if current_user && current_user.admin == true
-        return true
-      else
-        redirect_to users_homepage_path
-      end
+      return true
     else
+      flash[:error] = "You must be logged in to access this section."
       redirect_to new_user_session_path
     end
   end

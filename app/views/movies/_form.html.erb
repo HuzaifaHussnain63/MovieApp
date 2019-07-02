@@ -1,5 +1,5 @@
 <%= form_with(model: @movie, local:true, method: request_method) do |form| %>
-  <% if @movie.errors.any? %>
+  <% if !@movie.nil? && @movie.errors.any? %>
     <div id="error_explanation">
       <h3><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h3>
         <ul>
@@ -13,7 +13,7 @@
   <%= form.label :title %>
   <%= form.text_field :title %></br></br>
   <%= form.label :description %>
-  <%= form.text_area :description, class: 'tinymce', rows: 40, cols: 120 %>
+  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %>
   <%= tinymce %>
   <%= form.submit submit_button_text%></br>
 <% end %>

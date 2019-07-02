@@ -1,5 +1,3 @@
-<%= link_to 'Edit Profile', edit_user_registration_path %> </br>
-<%= link_to 'Sign Out', destroy_user_session_path, method: 'DELETE' %></br>
 
 <% @movies.each do |movie| %>
   <%= movie.title %>
@@ -9,5 +7,3 @@
   <%= link_to 'Details', movie_path(movie) %></br>
   <% end %>
 <% end %></br>
-
-<%= link_to 'add movie', new_movie_path %> </br>
