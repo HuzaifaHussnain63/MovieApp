@@ -19,6 +19,13 @@
   <%= form.text_field :genre %></br>
   <%= form.label :release_date %>
   <%= form.date_field :release_date, start_year: Date.today.year-50 %></br>
-
+  <%= form.label :thumbnail %>
+  <%= form.file_field :thumbnail %></br>
+  </br>
+  <%= form.label :posters %>
+  <%= form.file_field :posters, multiple: true %></br>
+</br>
+  <%= form.label :trailer %>
+  <%= form.file_field :trailer %></br>
   <%= form.submit submit_button_text%></br>
 <% end %>
