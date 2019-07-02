@@ -11,9 +11,14 @@
   <% end %>
 
   <%= form.label :title %>
-  <%= form.text_field :title %></br></br>
+  <%= form.text_field :title %></br>
   <%= form.label :description %>
-  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %>
+  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %></br>
   <%= tinymce %>
+  <%= form.label :genre %>
+  <%= form.text_field :genre %></br>
+  <%= form.label :release_date %>
+  <%= form.date_field :release_date, start_year: Date.today.year-50 %></br>
+
   <%= form.submit submit_button_text%></br>
 <% end %>
