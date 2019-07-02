@@ -1,14 +1,1 @@
-<% if @movie && @movie.errors.any? %>
-  <% @movie.errors.full_messages.each do |msg| %>
-    <%= msg %></br>
-  <% end %>
-<% end %>
-
-<%= form_for(@movie) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %></br></br>
-  <%= form.label :description %>
-  <%= form.text_area :description, class: "tinymce", rows: 40, cols: 20 %>
-  <%= tinymce %>
-  <%= form.submit "Add Movie" %></br>
-<% end %>
+<%= render partial: 'form', locals: {request_method: 'POST', submit_button_text: 'Add Movie'} %>
