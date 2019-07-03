@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
-
-  before_action :require_login, except: [:show]
+  before_action :authenticate_user!, except: [:show]
 
   def new
     @movie = Movie.new
@@ -65,15 +64,6 @@ class MoviesController < ApplicationController
   private
   def movie_param
     params.require(:movie).permit(:title, :description, :release_date, :genre, :thumbnail, :trailer, posters: [])
-  end
-
-  def require_login
-    if user_signed_in?
-      return true
-    else
-      flash[:error] = "You must be logged in to access this section."
-      redirect_to new_user_session_path
-    end
   end
 
 end
