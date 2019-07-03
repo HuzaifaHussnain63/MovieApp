@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :is_admin?
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @movies = Movie.all
@@ -19,44 +19,52 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+    else
+      flash[:danger] = "No movie found with this id"
+      redirect_to movies_path
+    end
   end
 
   def update
-    @movie = Movie.find(params[:id])
-    if @movie.update(movie_param)
-      redirect_to movies_path
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+      if @movie.update(movie_param)
+        redirect_to movie_path(@movie)
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      flash[:danger] = "No movie found with this id"
+      redirect_to movies_path
     end
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
-    if @movie.destroy
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+      if !@movie.destroy()
+        flash[:danger] = "Could not delete the movie"
+        render movies_path
+      end
+    else
+      flash[:danger] = "No movie found with this id"
       redirect_to movies_path
     end
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    if Movie.exists?(params[:id])
+      @movie = Movie.find(params[:id])
+    else
+      flash[:danger] = "No movie found with this id"
+      redirect_to movies_path
+    end
   end
 
   private
   def movie_param
     params.require(:movie).permit(:title, :description)
   end
-
-  def is_admin?
-    if user_signed_in?
-      if current_user && current_user.admin == true
-        return true
-      else
-        redirect_to users_homepage_path
-      end
-    else
-      redirect_to new_user_session_path
-    end
-  end
-
 end
