@@ -4,11 +4,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="#">Movie App</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-      <li class="nav-item">
-        <%= link_to 'Home', home_homepage_path, class: 'nav-link'%>
-      </li>
 
       <% if user_signed_in? and current_user.is_admin? %>
         <%= render partial: 'shared/admin_navbar' %>
@@ -19,12 +14,14 @@
       <% end %>
 
       <% if !user_signed_in? %>
+        <ul class='navbar-nav order-0 mr-5'>
         <li class="nav-item">
-          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link'%>
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link float-right'%>
         </li>
-        <li class="nav-item">
+        <li class="nav-item float-right">
           <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'%>
         </li>
+      </ul>
       <% end %>
     </ul>
   </div>

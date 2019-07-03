@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  before_action :require_login
+  before_action :require_login, except: [:show]
 
   def new
     @movie = Movie.new
@@ -9,28 +9,26 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_param)
     if @movie.save
-      redirect_to home_homepage_path
+      redirect_to movie_path(@movie)
     else
       render 'new'
     end
   end
 
   def edit
-
     if Movie.exists?(params[:id])
       @movie = Movie.find(params[:id])
     else
       flash[:danger] = "No movie found with this id"
       redirect_to home_homepage_path
     end
-
   end
 
   def update
     if Movie.exists?(params[:id])
       @movie = Movie.find(params[:id])
       if @movie.update(movie_param)
-        redirect_to home_homepage_path
+        redirect_to movie_path(@movie)
       else
         render 'edit'
       end
