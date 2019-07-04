@@ -6,14 +6,14 @@
     <%= link_to 'Movie App', home_index_path, class: 'navbar-brand' %>
     <%= render partial: 'shared/admin_navbar' if user_signed_in? && current_user.admin? %>
     <%= render partial: 'shared/user_navbar' if user_signed_in? && !current_user.admin? %>
-    <% if !user_signed_in? %>
+    <% unless user_signed_in? %>
       <ul class='navbar-nav order-0 mr-5'>
-      <li class="nav-item">
-        <%= link_to 'Sign In', new_user_session_path, class: 'nav-link float-right'%>
-      </li>
-      <li class="nav-item float-right">
-        <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'%>
-      </li>
+        <li class="nav-item">
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link float-right'%>
+        </li>
+        <li class="nav-item float-right">
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'%>
+        </li>
       </ul>
     <% end %>
     </ul>

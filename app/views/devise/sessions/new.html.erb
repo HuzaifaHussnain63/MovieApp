@@ -7,14 +7,12 @@
         <%= f.label :email %>
         <div class='clearfix'></div>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        <div class='clearfix'></div>
       </div>
 
       <div class="field">
         <%= f.label :password %>
         <div class='clearfix'></div>
         <%= f.password_field :password, autocomplete: "current-password" %>
-        <div class='clearfix'></div>
       </div>
 
       <% if devise_mapping.rememberable? %>

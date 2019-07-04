@@ -12,7 +12,7 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class='container'>
-      <%= render 'shared/flash_messages' if !flash.empty? %>
+      <%= render 'shared/flash_messages' if flash.present? %>
       <%= yield %>
     </div>
   </body>

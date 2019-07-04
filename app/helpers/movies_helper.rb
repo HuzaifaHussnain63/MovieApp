@@ -1,9 +1,5 @@
 module MoviesHelper
   def carousel_class(index)
-    if index == 0
-      return 'carousel-item active'
-    else
-      return 'carousel-item'
-    end
+    index == 0 && 'carousel-item active' || 'carousel-item'
   end
 end
