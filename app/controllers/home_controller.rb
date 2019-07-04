@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  def homepage
+  def firstpage
     @movies = Movie.all
   end
 

@@ -30,10 +30,10 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     if @movie.destroy()
-      redirect_to home_homepage_path
+      redirect_to home_firstpage_path
     else
       flash[:danger] = "Could not delete the movie"
-      redirect_to home_homepage_path
+      redirect_to home_firstpage_path
     end
   end
 
@@ -47,9 +47,9 @@ class MoviesController < ApplicationController
   end
 
   def authenticate_admin
-    return true if user_signed_in? && current_user.is_admin?
+    return true if user_signed_in? && current_user.admin?
     flash[:alert] = "You need to be admin to access this section"
-    redirect_to home_homepage_path
+    redirect_to home_firstpage_path
   end
 
 end

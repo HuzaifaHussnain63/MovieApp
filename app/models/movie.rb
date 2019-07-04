@@ -1,12 +1,12 @@
 class Movie < ApplicationRecord
   before_save :capitalize_attributes
   validates :title, presence: true, uniqueness: true
-  validates :description, presence: true
+  validates :description, :release_date, :genre, presence: true
   validate :attachment_validations
 
   has_one_attached :thumbnail
-  has_many_attached :posters
   has_one_attached :trailer
+  has_many_attached :posters
 
   private
   def capitalize_attributes
@@ -17,13 +17,10 @@ class Movie < ApplicationRecord
   def attachment_validations
     if !thumbnail.attached?
       errors.add(:thumnbail, 'must be present')
-      return false
     elsif !posters.attached?
       errors.add(:posters, 'must be present')
-      return false
     elsif !trailer.attached?
       errors.add(:trailer, 'must be present')
-      return false
     else
       return true
     end

@@ -1,5 +1,5 @@
 <%= form_with(model: @movie, local:true, method: request_method) do |form| %>
-  <% if !@movie.nil? && @movie.errors.any? %>
+  <% if @movie.present? && @movie.errors.any? %>
     <div id="error_explanation">
       <h3><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h3>
         <ul>
@@ -11,21 +11,29 @@
   <% end %>
 
   <%= form.label :title %>
-  <%= form.text_field :title %></br>
+  <%= form.text_field :title %>
+  <div class = 'clear-fix'></div>
   <%= form.label :description %>
-  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %></br>
+  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %>
+  <div class = 'clear-fix'></div>
   <%= tinymce %>
   <%= form.label :genre %>
-  <%= form.text_field :genre %></br>
+  <%= form.text_field :genre %>
+  <div class = 'clear-fix'></div>
   <%= form.label :release_date %>
-  <%= form.date_field :release_date, start_year: Date.today.year-50 %></br>
+  <%= form.date_field :release_date, start_year: Date.today.year - 50 %>
+  <div class = 'clear-fix'></div>
   <%= form.label :thumbnail %>
-  <%= form.file_field :thumbnail %></br>
-  </br>
+  <%= form.file_field :thumbnail %>
+  <div class = 'clear-fix'></div>
+  <div class = 'clear-fix'></div>
   <%= form.label :posters %>
-  <%= form.file_field :posters, multiple: true %></br>
-</br>
+  <%= form.file_field :posters, multiple: true %>
+  <div class = 'clear-fix'></div>
+  <div class = 'clear-fix'></div>
   <%= form.label :trailer %>
-  <%= form.file_field :trailer %></br>
-  <%= form.submit submit_button_text%></br>
+  <%= form.file_field :trailer %>
+  <div class = 'clear-fix'></div>
+  <%= form.submit submit_button_text%>
+  <div class = 'clear-fix'></div>
 <% end %>

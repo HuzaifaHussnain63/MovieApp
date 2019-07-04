@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  def is_admin?
+  def admin?
     self.admin
   end
 end

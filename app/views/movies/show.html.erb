@@ -1,13 +1,11 @@
 <div class = 'row pt-5'>
   <div class = 'col-lg-10 offset-lg-1 border pt-3'>
-
     <!-- this div shows movie name, genre, thumbnail and trailer -->
     <div>
       <h2>
         <%= raw "#{@movie.title} (#{@movie.release_date.year})"%>
-        <% if user_signed_in? && current_user.is_admin? %>
+        <% if user_signed_in? && current_user.admin? %>
           <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
-
           <%= link_to 'Delete', movie_path(@movie), method: 'DELETE', class: 'btn btn-primary float-right' %>
         <% end %>
       </h2>
@@ -32,6 +30,5 @@
 
     <!-- this partial will display a carousal containing movie posters -->
     <%= render 'posters_carousal' %>
-
   </div>
 </div>
