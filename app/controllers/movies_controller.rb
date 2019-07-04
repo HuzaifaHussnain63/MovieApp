@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
   before_action :authenticate_admin, except:[:show]
 
   def new
@@ -34,7 +33,7 @@ class MoviesController < ApplicationController
       redirect_to home_homepage_path
     else
       flash[:danger] = "Could not delete the movie"
-      render home_homepage_path
+      redirect_to home_homepage_path
     end
   end
 
@@ -48,12 +47,9 @@ class MoviesController < ApplicationController
   end
 
   def authenticate_admin
-    if user_signed_in? && current_user.is_admin?
-      return true
-    else
-      flash[:alert] = "You need to be admin to access this section"
-      redirect_to home_homepage_path
-    end
+    return true if user_signed_in? && current_user.is_admin?
+    flash[:alert] = "You need to be admin to access this section"
+    redirect_to home_homepage_path
   end
 
 end
