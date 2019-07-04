@@ -1,4 +1,29 @@
-<%= raw @movie.title %>
-</br>
-<%= raw @movie.description %>
-</br>
+<div class='row pt-5'>
+  <div class='col-lg-10 offset-lg-1 border pt-3'>
+    <h2>
+      <%= raw "#{@movie.title} (#{@movie.release_date.year})"%>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
+        <%= link_to 'Delete', movie_path(@movie), method: :delete, class: 'btn btn-primary float-right' %>
+      <% end %>
+    </h2>
+    <h5><%= @movie.genre %></h5>
+    <div class='row'>
+      <div class='col-lg-3 col-md-3'>
+        <%= image_tag url_for(@movie.thumbnail), class: 'img-fluid' %>
+      </div>
+      <div class='col-lg-9 col-md-9 embed-responsive p-0'>
+        <%= video_tag rails_blob_path(@movie.trailer), controls: true %>
+      </div>
+    </div>
+    <!-- this div shows movie's description-->
+    <div class='row pt-5'>
+      <div class='col'>
+        <h3>Description</h3>
+        <h5><%= raw @movie.description %></h5>
+      </div>
+    </div>
+    <!-- this partial will display a carousal containing movie posters -->
+    <%= render 'posters_carousal' %>
+  </div>
+</div>
