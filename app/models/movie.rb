@@ -15,13 +15,9 @@ class Movie < ApplicationRecord
   end
 
   def attachment_validations
-    if !thumbnail.attached?
-      errors.add(:thumnbail, 'must be present')
-    elsif !posters.attached?
-      errors.add(:posters, 'must be present')
-    elsif !trailer.attached?
-      errors.add(:trailer, 'must be present')
-    end
+    errors.add(:posters, 'must be present') unless posters.attached?
+    errors.add(:trailer, 'must be present') unless trailer.attached?
+    errors.add(:thumnbail, 'must be present') unless thumbnail.attached?
   end
 
 end
