@@ -1,9 +1,9 @@
 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
   <li class="nav-item">
-    <%= link_to 'Home', home_firstpage_path, class: 'nav-link'%>
+    <%= link_to 'Home', home_index_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Add Movie', new_movie_path, class: 'nav-link'%>
+    <%= link_to 'Add Movie', new_movie_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Add User</a>
@@ -15,6 +15,6 @@
     <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Sign Out', destroy_user_session_path, method: 'Delete', class: 'nav-link'%>
+    <%= link_to 'Sign Out', destroy_user_session_path, method: 'Delete', class: 'nav-link' %>
   </li>
 </ul>

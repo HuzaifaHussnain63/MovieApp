@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'home/firstpage'
+  get 'home/index'
   devise_for :users
   resources :movies, except: [:index]
-  root to: 'home#firstpage'
+  root to: 'home#index'
 end

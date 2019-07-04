@@ -21,8 +21,6 @@ class Movie < ApplicationRecord
       errors.add(:posters, 'must be present')
     elsif !trailer.attached?
       errors.add(:trailer, 'must be present')
-    else
-      return true
     end
   end
 

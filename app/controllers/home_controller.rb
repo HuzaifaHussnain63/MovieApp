@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 
-  def firstpage
+  def index
     @movies = Movie.all
+    render 'firstpage.html.erb'
   end
 
 end
