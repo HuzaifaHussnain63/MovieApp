@@ -1,0 +1,6 @@
+<% @actors.each do |actor| %>
+  <%= actor.name %>
+  <%= link_to "Edit", edit_actor_path(actor) %>
+  <%= link_to "Show", actor_path(actor) %>
+  <%= link_to "Delete", actor_path(actor), method: :delete %>
+<% end %>

@@ -1,0 +1,21 @@
+<%= form_with(model: @actor, local:true, method: request_method) do |form| %>
+  <% if @actor.present? && @actor.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@actor.errors.count, "error") %> prohibited this actor from being saved:</h3>
+        <ul>
+          <% @actor.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <div class='clearfix'></div>
+  <%= form.label :picture %>
+  <%= form.file_field :picture %>
+  <div class='clearfix'></div>
+  <%= form.submit submit_button_text %>
+  <div class='clearfix'></div>
+<% end %>

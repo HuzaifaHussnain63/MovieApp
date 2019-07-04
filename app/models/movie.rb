@@ -8,6 +8,8 @@ class Movie < ApplicationRecord
   has_one_attached :trailer
   has_many_attached :posters
 
+  has_and_belongs_to_many :actors
+
   private
   def capitalize_attributes
     self.title.capitalize!
