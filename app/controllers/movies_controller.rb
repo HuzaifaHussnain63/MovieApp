@@ -1,9 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-
-  def index
-    @movies = Movie.all
-  end
+  before_action :authenticate_admin, except:[:show]
 
   def new
     @movie = Movie.new
@@ -12,59 +8,48 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_param)
     if @movie.save
-      redirect_to movies_path
+      redirect_to movie_path(@movie)
     else
       render 'new'
     end
   end
 
   def edit
-    if Movie.exists?(params[:id])
-      @movie = Movie.find(params[:id])
-    else
-      flash[:danger] = "No movie found with this id"
-      redirect_to movies_path
-    end
+    @movie = Movie.find(params[:id])
   end
 
   def update
-    if Movie.exists?(params[:id])
-      @movie = Movie.find(params[:id])
-      if @movie.update(movie_param)
-        redirect_to movie_path(@movie)
-      else
-        render 'edit'
-      end
+    @movie = Movie.find(params[:id])
+    if @movie.update(movie_param)
+      redirect_to movie_path(@movie)
     else
-      flash[:danger] = "No movie found with this id"
-      redirect_to movies_path
+      render 'edit'
     end
   end
 
   def destroy
-    if Movie.exists?(params[:id])
-      @movie = Movie.find(params[:id])
-      if !@movie.destroy()
-        flash[:danger] = "Could not delete the movie"
-        render movies_path
-      end
+    @movie = Movie.find(params[:id])
+    if @movie.destroy()
+      redirect_to home_index_path
     else
-      flash[:danger] = "No movie found with this id"
-      redirect_to movies_path
+      flash[:danger] = "Could not delete the movie"
+      redirect_to home_index_path
     end
   end
 
   def show
-    if Movie.exists?(params[:id])
-      @movie = Movie.find(params[:id])
-    else
-      flash[:danger] = "No movie found with this id"
-      redirect_to movies_path
-    end
+    @movie = Movie.find(params[:id])
   end
 
   private
   def movie_param
-    params.require(:movie).permit(:title, :description)
+    params.require(:movie).permit(:title, :description, :release_date, :genre, :thumbnail, :trailer, posters: [])
   end
+
+  def authenticate_admin
+    return true if user_signed_in? && current_user.admin?
+    flash[:alert] = "You need to be admin to access this section"
+    redirect_to home_index_path
+  end
+
 end

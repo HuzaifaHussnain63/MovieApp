@@ -1,0 +1,12 @@
+<div class='row'>
+  <% @movies.each do |movie| %>
+    <div class='col-lg-3 col-md-4 col-sm-2'>
+      <div class='p-3'>
+        <div class='card p-0 border-0'>
+          <%= image_tag url_for(movie.thumbnail), class: 'card-img-top img-reponsive img-fluid' %>
+          <h5><%= link_to (raw movie.title), movie_path(movie) %></h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
