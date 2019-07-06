@@ -41,6 +41,13 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  def remove_actor
+    @movie = Movie.find(params[:id])
+    @actor = Actor.find(params[:actor_id])
+    @movie.actors.delete(@actor)
+    redirect_to movie_path(@movie)
+  end
+
   private
   def movie_param
     params.require(:movie).permit(:title, :description, :release_date, :genre, :thumbnail, :trailer, posters: [])

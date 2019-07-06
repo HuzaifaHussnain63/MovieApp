@@ -9,29 +9,35 @@
         </ul>
     </div>
   <% end %>
-
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-  <div class='clearfix'></div>
-  <%= form.label :description %>
-  <%= form.text_area :description, class: 'tinymce', rows: 15, cols: 120 %>
-  <div class='clearfix'></div>
-  <%= tinymce %>
-  <%= form.label :genre %>
-  <%= form.text_field :genre %>
-  <div class='clearfix'></div>
-  <%= form.label :release_date %>
-  <%= form.date_field :release_date, start_year: Date.today.year - 50 %>
-  <div class='clearfix'></div>
-  <%= form.label :thumbnail %>
-  <%= form.file_field :thumbnail %>
-  <div class='clearfix'></div>
-  <%= form.label :posters %>
-  <%= form.file_field :posters, multiple: true %>
-  <div class='clearfix'></div>
-  <%= form.label :trailer %>
-  <%= form.file_field :trailer %>
-  <div class='clearfix'></div>
-  <%= form.submit submit_button_text %>
+  <div class='form-group'>
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'tinymce form-control', rows: 15, cols: 120 %>
+    <%= tinymce %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :genre %>
+    <%= form.text_field :genre, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :release_date %>
+    <%= form.date_field :release_date, start_year: Date.today.year - 50, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :posters %>
+    <%= form.file_field :posters, multiple: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :trailer %>
+    <%= form.file_field :trailer, class: 'form-control' %>
+  </div>
+  <%= form.submit submit_button_text, class: 'btn btn-primary' %>
   <div class='clearfix'></div>
 <% end %>

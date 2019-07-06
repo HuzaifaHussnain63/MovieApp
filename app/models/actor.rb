@@ -1,5 +1,5 @@
 class Actor < ApplicationRecord
-  before_save :capitalize_attributes
+  before_save :titleize_name
 
   validates :name, presence: true
   validate :attachment_validations
@@ -9,7 +9,7 @@ class Actor < ApplicationRecord
   has_one_attached :picture
 
   private
-  def capitalize_attributes
+  def titleize_name
     self.name = self.name.titleize
   end
 

@@ -1,0 +1,36 @@
+
+<% if @movie.actors.any? %>
+      <div class='col pt-5'>
+        <% @movie.actors.each do |actor| %>
+          <div class='movie_cast pt-3 border-bottom pb-2'>
+            <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
+            <%= actor.name %>
+            <% if is_admin_signedin? %>
+              <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), remove_actor_path(@movie.id, actor.id) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+
+<%= link_to fa_icon('plus-circle 3x'), '#' %>
+<!-- adding actors to a movie, Bootstrap Modal -->
+<div class="modal fade" id="addActorModel" tabindex="-1" role="dialog" aria-labelledby="addActorlabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Actor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= select_tag(:city_id, '<option value="1">Lisbon</option>...') %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
