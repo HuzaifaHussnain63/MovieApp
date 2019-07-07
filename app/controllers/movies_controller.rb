@@ -39,12 +39,21 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @actors_not_in_movie =  Actor.all.where.not(id: Movie.find(5).actors)
   end
 
   def remove_actor
     @movie = Movie.find(params[:id])
     @actor = Actor.find(params[:actor_id])
     @movie.actors.delete(@actor)
+    redirect_to movie_path(@movie)
+  end
+
+  # this action will add actor to movie cast
+  def add_actor
+    @movie = Movie.find(params[:movie_id])
+    @actor = Actor.find(params[:actor][:id])
+    @movie.actors << @actor
     redirect_to movie_path(@movie)
   end
 

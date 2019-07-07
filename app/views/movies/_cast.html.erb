@@ -13,7 +13,7 @@
       </div>
   <% end %>
 
-<%= link_to fa_icon('plus-circle 3x'), '#' %>
+<%= link_to fa_icon('plus-circle 3x'), '#', data: {toggle: 'modal', target: '#addActorModel'} %>
 <!-- adding actors to a movie, Bootstrap Modal -->
 <div class="modal fade" id="addActorModel" tabindex="-1" role="dialog" aria-labelledby="addActorlabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -24,13 +24,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <%= select_tag(:city_id, '<option value="1">Lisbon</option>...') %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <%= form_for :adding_actor, url: :add_actor do |form| %>
+        <%= hidden_field_tag('movie_id', @movie.id) %>
+        <div class="modal-body">
+          <%= collection_select(:actor, :id, @actors_not_in_movie.all, :id, :name, {hide_label: true}, class: "form-control") %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= form.submit "Add Actor", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
