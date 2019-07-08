@@ -1,20 +1,18 @@
+<h2>Actors<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
 <% if @movie.actors.any? %>
-      <div class='col pt-5'>
-        <% @movie.actors.each do |actor| %>
-          <div class='movie_cast pt-3 border-bottom pb-2'>
-            <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
-            <%= actor.name %>
-            <% if is_admin_signedin? %>
-              <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), remove_actor_path(@movie.id, actor.id) %>
-            <% end %>
-          </div>
+  <div class='col pt-3'>
+    <% @movie.actors.each do |actor| %>
+      <div class='movie_cast pt-3 border-bottom pb-2'>
+        <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
+        <%= actor.name %>
+        <% if admin_logged_in? %>
+          <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), remove_actor_path(@movie.id, actor.id) %>
         <% end %>
       </div>
+    <% end %>
+  </div>
 <% end %>
 
-<% if is_admin_signedin? %>
-  <%= link_to fa_icon('plus-circle 3x'), '#', data: {toggle: 'modal', target: '#addActorModel'} %>
-<% end %>
 <!-- adding actors to a movie, Bootstrap Modal -->
 <div class="modal fade" id="addActorModel" tabindex="-1" role="dialog" aria-labelledby="addActorlabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -26,7 +24,7 @@
         </button>
       </div>
       <%= form_for :adding_actor, url: :add_actor do |form| %>
-        <%= hidden_field_tag('movie_id', @movie.id) %>
+        <%= hidden_field_tag('id', @movie.id) %>
         <div class="modal-body">
           <%= collection_select(:actor, :id, @actors_not_in_movie.all, :id, :name, {hide_label: true}, class: "form-control") %>
         </div>

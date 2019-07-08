@@ -3,8 +3,7 @@ module MoviesHelper
     index == 0 && 'carousel-item active' || 'carousel-item'
   end
 
-  def is_admin_signedin?
-    return true if user_signed_in? && current_user.admin
-    return false
+  def admin_logged_in?
+    user_signed_in? && current_user.admin
   end
 end

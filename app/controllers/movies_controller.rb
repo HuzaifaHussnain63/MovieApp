@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authenticate_admin, except: [:show]
+  before_action :set_movie, except: [:new, :create]
 
   def new
     @movie = Movie.new
@@ -15,11 +16,9 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
 
   def update
-    @movie = Movie.find(params[:id])
     if @movie.update(movie_param)
       redirect_to movie_path(@movie)
     else
@@ -28,7 +27,6 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     if @movie.destroy()
       redirect_to home_index_path
     else
@@ -38,12 +36,10 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
-    @actors_not_in_movie =  Actor.all.where.not(id: Movie.find(params[:id]).actors)
+    @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id))
   end
 
   def remove_actor
-    @movie = Movie.find(params[:id])
     @actor = Actor.find(params[:actor_id])
     @movie.actors.delete(@actor)
     redirect_to movie_path(@movie)
@@ -51,33 +47,28 @@ class MoviesController < ApplicationController
 
   # this action will add actor to movie cast
   def add_actor
-    @movie = Movie.find(params[:movie_id])
     @actor = Actor.find(params[:actor][:id])
     @movie.actors << @actor
     redirect_to movie_path(@movie)
   end
 
   def add_trailer
-    @movie = Movie.find(params[:movie_id])
     @movie.trailer.attach(params[:adding_trailer][:trailer])
     redirect_to movie_path(@movie)
   end
 
   # this action will detach trailer from a movie
   def remove_trailer
-    @movie = Movie.find(params[:id])
     @movie.trailer.delete
     redirect_to movie_path(@movie)
   end
 
   def remove_poster
-    @movie = Movie.find(params[:id])
     @movie.posters.find(params[:poster_id]).purge
     redirect_to movie_path(@movie)
   end
 
   def add_poster
-    @movie = Movie.find(params[:movie_id])
     @movie.posters.attach(params[:adding_poster][:posters])
     redirect_to movie_path(@movie)
   end
@@ -91,6 +82,10 @@ class MoviesController < ApplicationController
     return true if user_signed_in? && current_user.admin?
     flash[:alert] = "You need to be admin to access this section"
     redirect_to home_index_path
+  end
+
+  def set_movie
+    @movie = Movie.find(params[:id])
   end
 
 end

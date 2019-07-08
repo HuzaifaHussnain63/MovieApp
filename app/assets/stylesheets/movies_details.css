@@ -1,21 +1,18 @@
-.movies_poster
-{
-  max-height: 500px !important
+.movies_poster {
+  max-height: 500px !important;
 }
 
-.movie_cast img.rounded-circle
-{
+.movie_cast img.rounded-circle {
   width: 90px !important;
-  height: 90px !important
+  height: 90px !important;
 }
 
-.movie_card{
+.movie_card {
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
   color: black;
 }
 
-
-.movie_thumbnail{
+.movie_thumbnail {
   width: 220px !important;
   height: 320px !important;
 }
@@ -52,7 +49,7 @@
 }
 
 /* styles for movie show page*/
-.movie_poster{
+.movie_poster {
   height: 320px !important;
   width: fit;
 }
