@@ -40,6 +40,8 @@
 
         <div class="form-group">
           <%= f.label 'Profile Picture'%>
+          <div class='clearfix'></div>
+          <%= image_tag url_for(resource.avatar), class: 'rounded-circle profile_picture' %>
           <%= f.file_field :avatar, class: 'form-control' %>
         </div>
 

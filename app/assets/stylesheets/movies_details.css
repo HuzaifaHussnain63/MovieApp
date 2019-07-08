@@ -53,3 +53,9 @@
   height: 320px !important;
   width: fit;
 }
+
+/* Style for profile edit page*/
+.profile_picture {
+  height: 150px;
+  width: 150px;
+}
