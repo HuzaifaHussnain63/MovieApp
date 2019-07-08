@@ -50,3 +50,9 @@
   color: black;
   font-size: 2rem;
 }
+
+/* styles for movie show page*/
+.movie_poster{
+  height: 320px !important;
+  width: fit;
+}

@@ -23,16 +23,14 @@
       <li class="nav-item">
         <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photo" aria-selected="false">Photo Gallery</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="cast" role="tabpanel" aria-labelledby="cast-tab">
-      <%= render 'cast' %>
+      <div class="tab-pane fade show active" id="cast" role="tabpanel" aria-labelledby="cast-tab">
+        <%= render 'cast' %>
+      </div>
+      <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photo-tab">
+        <%= render 'movie_gallery' %>
+      </div>
     </div>
-    <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photo-tab">...</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-</div>
-</div>
+  </div>
 </div>

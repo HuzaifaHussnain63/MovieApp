@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @actors_not_in_movie =  Actor.all.where.not(id: Movie.find(5).actors)
+    @actors_not_in_movie =  Actor.all.where.not(id: Movie.find(params[:id]).actors)
   end
 
   def remove_actor
@@ -54,6 +54,31 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:movie_id])
     @actor = Actor.find(params[:actor][:id])
     @movie.actors << @actor
+    redirect_to movie_path(@movie)
+  end
+
+  def add_trailer
+    @movie = Movie.find(params[:movie_id])
+    @movie.trailer.attach(params[:adding_trailer][:trailer])
+    redirect_to movie_path(@movie)
+  end
+
+  # this action will detach trailer from a movie
+  def remove_trailer
+    @movie = Movie.find(params[:id])
+    @movie.trailer.delete
+    redirect_to movie_path(@movie)
+  end
+
+  def remove_poster
+    @movie = Movie.find(params[:id])
+    @movie.posters.find(params[:poster_id]).purge
+    redirect_to movie_path(@movie)
+  end
+
+  def add_poster
+    @movie = Movie.find(params[:movie_id])
+    @movie.posters.attach(params[:adding_poster][:posters])
     redirect_to movie_path(@movie)
   end
 

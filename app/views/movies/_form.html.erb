@@ -30,6 +30,7 @@
     <%= form.label :thumbnail %>
     <%= form.file_field :thumbnail, class: 'form-control' %>
   </div>
+  <% if request_method == :post %>
   <div class='form-group'>
     <%= form.label :posters %>
     <%= form.file_field :posters, multiple: true, class: 'form-control' %>
@@ -38,6 +39,7 @@
     <%= form.label :trailer %>
     <%= form.file_field :trailer, class: 'form-control' %>
   </div>
+  <% end %>
   <%= form.submit submit_button_text, class: 'btn btn-primary' %>
   <div class='clearfix'></div>
 <% end %>

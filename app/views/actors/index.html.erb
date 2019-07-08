@@ -1,6 +1,12 @@
-<% @actors.each do |actor| %>
-  <%= actor.name %>
-  <%= link_to "Edit", edit_actor_path(actor) %>
-  <%= link_to "Show", actor_path(actor) %>
-  <%= link_to "Delete", actor_path(actor), method: :delete %>
+<% if @actors.any? %>
+  <h2 class='p-3'>Actors</h2>
+  <% @actors.each do |actor| %>
+    <div class='movie_cast pt-3 border-bottom pb-2'>
+      <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
+      <%= actor.name %>
+      <%= link_to fa_icon('edit  2x', class: 'pull-right pt-5'), edit_actor_path(actor)   %>
+      <%= link_to fa_icon('trash 2x', class: 'pull-right pt-5'), actor_path(actor), method: :delete %>
+    </div>
+  <% end %>
 <% end %>
+<%= link_to 'Add Actors', new_actor_path, class: 'btn btn-primary mt-4' %>
