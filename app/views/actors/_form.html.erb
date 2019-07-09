@@ -1,4 +1,4 @@
-<%= form_with(model: @actor, local:true, method: request_method) do |form| %>
+<%= form_with(model: @actor, local: true, method: request_method) do |form| %>
   <% if @actor.present? && @actor.errors.any? %>
     <div id="error_explanation">
       <h3><%= pluralize(@actor.errors.count, "error") %> prohibited this actor from being saved:</h3>

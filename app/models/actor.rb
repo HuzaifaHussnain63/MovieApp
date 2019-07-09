@@ -8,6 +8,8 @@ class Actor < ApplicationRecord
 
   has_one_attached :picture
 
+  paginates_per 5
+
   private
   def titleize_name
     self.name = self.name.titleize

@@ -6,7 +6,7 @@
         <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
         <%= actor.name %>
         <% if admin_logged_in? %>
-          <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), remove_actor_path(@movie.id, actor.id) %>
+          <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), detach_actor_from_movie_path(@movie.id, actor.id), method: :delete %>
         <% end %>
       </div>
     <% end %>
@@ -23,14 +23,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_for :adding_actor, url: :add_actor do |form| %>
+      <%= form_tag(:attach_actor_to_movie) do %>
         <%= hidden_field_tag('id', @movie.id) %>
         <div class="modal-body">
-          <%= collection_select(:actor, :id, @actors_not_in_movie.all, :id, :name, {hide_label: true}, class: "form-control") %>
+          <%= select_tag 'actor_id', options_for_select(@actors_not_in_movie), class: 'form-control' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= form.submit "Add Actor", class: 'btn btn-primary' %>
+          <%= submit_tag "Add Actor", class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
