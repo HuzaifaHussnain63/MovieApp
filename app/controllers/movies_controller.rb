@@ -1,11 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_admin, except: [:show]
-  before_action :set_movie, except: [:new, :create, :index]
-  before_action :set_actor, only: [:detach_actor, :attach_actor]
-
-  def index
-    @movies = Movie.order(release_date: :desc).page params[:page]
-  end
+  before_action :authenticate_admin, except:[:show]
 
   def new
     @movie = Movie.new
@@ -13,19 +7,19 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_param)
-
     if @movie.save
       redirect_to movie_path(@movie)
     else
       render 'new'
     end
-
   end
 
   def edit
+    @movie = Movie.find(params[:id])
   end
 
   def update
+    @movie = Movie.find(params[:id])
     if @movie.update(movie_param)
       redirect_to movie_path(@movie)
     else
@@ -34,58 +28,17 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    if @movie.destroy
+    @movie = Movie.find(params[:id])
+    if @movie.destroy()
       redirect_to home_index_path
     else
-      flash[:danger] = 'Could not delete the movie'
+      flash[:danger] = "Could not delete the movie"
       redirect_to home_index_path
     end
   end
 
   def show
-    @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id)).map { |actor| [actor.name, actor.id] }
-  end
-
-  def detach_actor
-    if @movie.actors.delete(@actor)
-      flash[:notice] = 'Successfully removed the actor from the movie'
-    else
-      flash[:danger] = 'Could not remove the actor'
-    end
-
-    redirect_to movie_path(@movie)
-  end
-
-  # this action will add actor to movie cast
-  def attach_actor
-    if @movie.actors << @actor
-      flash[:notice] = 'Successfully added the actor to the movie'
-    else
-      flash[:danger] = 'Could not add the actor'
-    end
-
-    redirect_to movie_path(@movie)
-  end
-
-  def add_trailer
-    @movie.trailer.attach(params[:adding_trailer][:trailer])
-    redirect_to movie_path(@movie)
-  end
-
-  # this action will detach trailer from a movie
-  def remove_trailer
-    @movie.trailer.purge
-    redirect_to movie_path(@movie)
-  end
-
-  def remove_poster
-    @movie.posters.find(params[:poster_id]).purge
-    redirect_to movie_path(@movie)
-  end
-
-  def add_poster
-    @movie.posters.attach(params[:adding_poster][:posters])
-    redirect_to movie_path(@movie)
+    @movie = Movie.find(params[:id])
   end
 
   private
@@ -93,8 +46,10 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :description, :release_date, :genre, :thumbnail, :trailer, posters: [])
   end
 
-  def set_movie
-    @movie = Movie.find(params[:id])
+  def authenticate_admin
+    return true if user_signed_in? && current_user.admin?
+    flash[:alert] = "You need to be admin to access this section"
+    redirect_to home_index_path
   end
 
 end

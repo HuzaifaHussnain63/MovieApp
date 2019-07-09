@@ -8,10 +8,6 @@ class Movie < ApplicationRecord
   has_one_attached :trailer
   has_many_attached :posters
 
-  has_and_belongs_to_many :actors
-
-  paginates_per 5
-
   private
   def capitalize_attributes
     self.title.capitalize!
@@ -19,6 +15,9 @@ class Movie < ApplicationRecord
   end
 
   def attachment_validations
+    errors.add(:posters, 'must be present') unless posters.attached?
+    errors.add(:trailer, 'must be present') unless trailer.attached?
     errors.add(:thumnbail, 'must be present') unless thumbnail.attached?
   end
+
 end

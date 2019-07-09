@@ -1,36 +1,29 @@
-<div class='row pt-5 border'>
-  <div class='col-12 pt-3'>
-    <div class='row dark_row'>
-      <div class='col-lg-3 col-md-3'>
-        <%= image_tag url_for(@movie.thumbnail), class: 'img-fluid movie_thumbnail' %>
-      </div>
-      <div class='col-lg-6 col-md-6'>
-        <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
-        <h5><%= @movie.genre %></h5>
-        <h5 class='mt-5'><%= raw @movie.description %></h5>
-      </div>
-      <div class='col-lg-3 col-md-3'>
-        <% if user_signed_in? && current_user.admin? %>
+<div class='row pt-5'>
+  <div class='col-lg-10 offset-lg-1 border pt-3'>
+    <h2>
+      <%= raw "#{@movie.title} (#{@movie.release_date.year})"%>
+      <% if user_signed_in? && current_user.admin? %>
         <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
         <%= link_to 'Delete', movie_path(@movie), method: :delete, class: 'btn btn-primary float-right' %>
       <% end %>
+    </h2>
+    <h5><%= @movie.genre %></h5>
+    <div class='row'>
+      <div class='col-lg-3 col-md-3'>
+        <%= image_tag url_for(@movie.thumbnail), class: 'img-fluid' %>
+      </div>
+      <div class='col-lg-9 col-md-9 embed-responsive p-0'>
+        <%= video_tag rails_blob_path(@movie.trailer), controls: true %>
       </div>
     </div>
-    <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="cast-tab" data-toggle="tab" href="#cast" role="tab" aria-controls="cast" aria-selected="true"><h5>Movie Cast</h5></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photo" aria-selected="false">Photo Gallery</a>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="cast" role="tabpanel" aria-labelledby="cast-tab">
-        <%= render 'cast' %>
-      </div>
-      <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photo-tab">
-        <%= render 'movie_gallery' %>
+    <!-- this div shows movie's description-->
+    <div class='row pt-5'>
+      <div class='col'>
+        <h3>Description</h3>
+        <h5><%= raw @movie.description %></h5>
       </div>
     </div>
+    <!-- this partial will display a carousal containing movie posters -->
+    <%= render 'posters_carousal' %>
   </div>
 </div>
