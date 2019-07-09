@@ -10,6 +10,8 @@ class Movie < ApplicationRecord
 
   has_and_belongs_to_many :actors
 
+  paginates_per 5
+
   private
   def capitalize_attributes
     self.title.capitalize!

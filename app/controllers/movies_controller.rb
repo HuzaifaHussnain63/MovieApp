@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authenticate_admin, except: [:show]
-  before_action :set_movie, except: [:new, :create]
+  before_action :set_movie, except: [:new, :create, :index]
 
   def new
     @movie = Movie.new
@@ -37,6 +37,10 @@ class MoviesController < ApplicationController
 
   def show
     @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id))
+  end
+
+  def index
+    @movies = Movie.order(:title).page params[:page]
   end
 
   def remove_actor

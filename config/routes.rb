@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :movies, except: [:index]
+  resources :movies
   resources :actors
 
   root to: 'home#index'
