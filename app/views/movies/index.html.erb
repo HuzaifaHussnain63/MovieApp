@@ -10,7 +10,7 @@
                 <%= movie.genre %>
                 <div class='clearfix'></div>
                   3.5/5
-                </div>
+              </div>
             </div>
             <h6 class='pt-1 pl-2'><%= movie.title %></h6>
             <h6 class='pl-2'><%= (raw movie.release_date.year) %></h6>
@@ -19,4 +19,7 @@
       </div>
     </div>
   <% end %>
+  <div class='col-lg-12'>
+    <%= paginate @movies, window: 2 %>
+  </div>
 </div>

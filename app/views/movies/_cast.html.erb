@@ -1,0 +1,38 @@
+<h2>Actors<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
+<% if @movie.actors.any? %>
+  <div class='col pt-3'>
+    <% @movie.actors.each do |actor| %>
+      <div class='movie_cast pt-3 border-bottom pb-2'>
+        <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
+        <%= actor.name %>
+        <% if admin_logged_in? %>
+          <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), detach_actor_from_movie_path(@movie.id, actor.id), method: :delete %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<!-- adding actors to a movie, Bootstrap Modal -->
+<div class="modal fade" id="addActorModel" tabindex="-1" role="dialog" aria-labelledby="addActorlabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Actor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_tag(:attach_actor_to_movie) do %>
+        <%= hidden_field_tag('id', @movie.id) %>
+        <div class="modal-body">
+          <%= select_tag 'actor_id', options_for_select(@actors_not_in_movie), class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= submit_tag "Add Actor", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
