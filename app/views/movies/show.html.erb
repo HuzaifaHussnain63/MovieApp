@@ -4,11 +4,17 @@
       <div class='col-lg-3 col-md-3'>
         <%= image_tag url_for(@movie.thumbnail), class: 'img-fluid movie_thumbnail' %>
       </div>
+
       <div class='col-lg-6 col-md-6'>
         <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
         <h5><%= @movie.genre %></h5>
         <h5 class='mt-5'><%= raw @movie.description %></h5>
+        <% if user_logged_in? %>
+          <h2 class='pt-5'>Add Review</h2>
+          <%= render 'reviews/review_form' %>
+        <% end %>
       </div>
+
       <div class='col-lg-3 col-md-3'>
         <% if user_signed_in? && current_user.admin? %>
         <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
@@ -16,21 +22,40 @@
       <% end %>
       </div>
     </div>
+
     <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="cast-tab" data-toggle="tab" href="#cast" role="tab" aria-controls="cast" aria-selected="true"><h5>Movie Cast</h5></a>
+        <a class="nav-link active" id="review-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="review" aria-selected="false"><h5>Reviews</h5></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photo" aria-selected="false">Photo Gallery</a>
+        <a class="nav-link" id="cast-tab" data-toggle="tab" href="#cast" role="tab" aria-controls="cast" aria-selected="true"><h5>Movie Cast</h5></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photo" aria-selected="false"><h5>Photo Gallery</h5></a>
       </li>
     </ul>
+
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="cast" role="tabpanel" aria-labelledby="cast-tab">
+
+      <div class="tab-pane fade" id="cast" role="tabpanel" aria-labelledby="cast-tab">
         <%= render 'cast' %>
       </div>
+
       <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photo-tab">
         <%= render 'movie_gallery' %>
       </div>
+
+      <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="review-tab">
+        <div class='row'>
+          <div class='reviews col-lg-12'>
+            <% @reviews.each do |single_review| %>
+              <%= render partial: 'review', locals: { review: single_review } %>
+            <% end %>
+            <%= paginate @reviews %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

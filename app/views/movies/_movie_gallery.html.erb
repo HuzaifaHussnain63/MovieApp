@@ -16,8 +16,8 @@
   <h2 class='pt-3 col-lg-12'>Posters <%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right pb-3', data: {toggle: 'modal', target: '#addPosterModel'} if admin_logged_in? %></h2>
   <% @movie.posters.each do |poster| %>
     <div class='col-lg-4'>
-      <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pb-2 pt-3'), remove_poster_from_movie_path(@movie.id, poster.id), method: :delete if admin_logged_in?%>
-      <%= image_tag url_for(poster), class: 'img-fluid movie_poster' %>
+      <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-3'), remove_poster_from_movie_path(@movie.id, poster.id), method: :delete if admin_logged_in?%>
+      <%= image_tag url_for(poster), class: 'img-fluid movie_poster pt-2' %>
     </div>
   <% end %>
 </div>

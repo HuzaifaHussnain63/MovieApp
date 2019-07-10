@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # resources :movies
   resources :actors, param: :actor_id
   resources :movies do
+    resources :reviews, only: [:create, :destroy, :update]
 
     member do
       delete 'actors/:actor_id/detach_actor', action: :detach_actor, as: :detach_actor_from

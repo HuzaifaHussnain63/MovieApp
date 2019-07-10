@@ -1,0 +1,23 @@
+<div class='col-lg-12'>
+  <div class="card m-3">
+  <div class="card-header">
+    <%= review.user.name %>
+
+    <% review.rating.times do |star| %>
+      <span class="fa fa-star golden-star"></span>
+    <% end %>
+
+    <% (5 - review.rating).times do |star| %>
+      <span class="fa fa-star"></span>
+    <% end %>
+    <% if allow_review_deletion?(review) %>
+      <%= link_to fa_icon('trash 2x', class: 'pull-right'), movie_review_path(review.movie_id, review), method: :delete, remote: true %>
+    <% end %>
+  </div>
+  <% if review.comment != '' %>
+    <div class="card-body">
+      <%= review.comment %>
+    </div>
+  <% end %>
+</div>
+</div>
