@@ -9,6 +9,7 @@ class Movie < ApplicationRecord
   has_many_attached :posters
 
   has_and_belongs_to_many :actors
+  has_many :reviews
 
   paginates_per 5
 
