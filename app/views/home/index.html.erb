@@ -9,7 +9,7 @@
               <div class="text font-weight-bold">
                 <%= movie.genre %>
                 <div class='clearfix'></div>
-                  3.5/5
+                  <%= movie.rating.round(1) %>
                 </div>
             </div>
             <h6 class='pt-1 pl-2'><%= movie.title %></h6>

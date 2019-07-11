@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_one :review
+  has_many :reviews
 
   def admin?
     self.admin
