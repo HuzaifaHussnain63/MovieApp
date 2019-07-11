@@ -1,4 +1,4 @@
-<div class='row pt-5 border'>
+<div class='row mt-3 border'>
   <div class='col-12 pt-3'>
     <div class='row dark_row'>
       <div class='col-lg-3 col-md-3'>
@@ -9,9 +9,9 @@
         <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
         <h5><%= @movie.genre %></h5>
         <h5 class='mt-5'><%= raw @movie.description %></h5>
-        <% if user_logged_in? %>
-          <h2 class='pt-5'>Add Review</h2>
-          <%= render 'reviews/review_form' %>
+        <% if user_logged_in? && !current_user.review.present? %>
+          <h2 class='pt-5 review-form-row'>Add Review</h2>
+          <%= render partial: 'reviews/review_form', locals: { request_method: :post, button_text: 'Post Review', remote: true, object: @review, path: movie_reviews_path(@movie.id) } %>
         <% end %>
       </div>
 
