@@ -9,7 +9,7 @@
         <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
         <h5><%= @movie.genre %></h5>
         <h5 class='mt-5'><%= raw @movie.description %></h5>
-        <% if user_logged_in? && !current_user.review.present? %>
+        <% if user_signed_in? && !current_user.review.present? %>
           <h2 class='pt-5 review-form-row'>Add Review</h2>
           <%= render partial: 'reviews/review_form', locals: { request_method: :post, button_text: 'Post Review', remote: true, object: @review, path: movie_reviews_path(@movie.id) } %>
         <% end %>
