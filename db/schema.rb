@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_141230) do
+ActiveRecord::Schema.define(version: 2019_07_12_071805) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 2019_07_11_141230) do
     t.string "genre"
     t.date "release_date"
     t.float "rating", default: 0.0
+  end
+
+  create_table "reported_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "movie_id"
+    t.index ["user_id", "review_id"], name: "index_reported_reviews_on_user_id_and_review_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

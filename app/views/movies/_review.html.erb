@@ -16,6 +16,9 @@
       <% if allow_review_deletion?(review) %>
         <%= link_to fa_icon('trash 2x', class: 'pull-right'), movie_review_path(review.movie_id, review), method: :delete %>
       <% end %>
+      <% unless review.id.in?(@reviews_reported_by_user) %>
+        <%= link_to 'report', report_review_path(review.id) %>
+      <% end %>
     </div>
     <% if review.comment != '' %>
       <div class="card-body">

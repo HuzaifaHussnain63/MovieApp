@@ -17,4 +17,5 @@ module MoviesHelper
     end
     return true
   end
+
 end

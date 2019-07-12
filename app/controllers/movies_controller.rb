@@ -45,6 +45,7 @@ class MoviesController < ApplicationController
   def show
     @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id)).map { |actor| [actor.name, actor.id] }
     @review = Review.new
+    @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
     @reviews = @movie.reviews.includes(:user).order(created_at: :desc).page params[:page]
   end
 

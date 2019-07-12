@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'reviews/:id/report', to: 'report_reviews#report', as: :report_review
+  get 'reported_reviews', to: 'report_reviews#index', as: :reported_reviews
+  delete 'reported_review/:id/remove', to: 'report_reviews#delete_reported_review', as: :remove_reported_review
+
   devise_for :users
 
-  # resources :movies
   resources :actors, param: :actor_id
   resources :movies do
     resources :reviews, only: [:create, :destroy, :update]
