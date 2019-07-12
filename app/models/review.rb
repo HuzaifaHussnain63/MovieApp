@@ -8,6 +8,12 @@ class Review < ApplicationRecord
     @movie.save
   end
 
+  after_destroy do |instance|
+    @movie = Movie.find(instance.movie_id)
+    @movie.rating = @movie.reviews.average(:rating)
+    @movie.save
+  end
+
   belongs_to :movie
   belongs_to :user
 
