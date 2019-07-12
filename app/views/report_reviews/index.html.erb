@@ -1,0 +1,40 @@
+<div class='row border'>
+  <div class='col-lg-12 pt-3'>
+    <% if @reported_reviews.any? %>
+    <h3 class='pl-3'>Reported Reviews</h3>
+      <% @reported_reviews.each do |reported| %>
+        <div class="card m-3">
+          <div class="card-header">
+            <%= reported.review.user.name %>
+
+            <% reported.review.rating.times do |star| %>
+              <span class="fa fa-star golden-star"></span>
+            <% end %>
+
+            <% (5 - reported.review.rating).times do |star| %>
+              <span class="fa fa-star"></span>
+            <% end %>
+            <span class='font-italic text-muted pl-3'>reported by</span>
+            <%= reported.user.name %>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Actions
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%= link_to 'Delete Complaint', delete_complaint_path(reported.review_id), method: :delete %>
+              </div>
+            </div>
+          </div>
+
+          <% if reported.review.comment != '' %>
+            <div class="card-body">
+              <%= reported.review.comment %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <h3>No Reported reviews yet</h3>
+    <% end %>
+  </div>
+</div>

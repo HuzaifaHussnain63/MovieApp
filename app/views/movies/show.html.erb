@@ -50,7 +50,7 @@
         <div class='row'>
           <div class='reviews col-lg-12'>
             <% @reviews.each do |single_review| %>
-              <%= render partial: 'review', locals: { review: single_review } %>
+              <%= render partial: 'review', locals: { review: single_review, reported_reviews_by_user: @reviews_reported_by_user } %>
             <% end %>
             <%= paginate @reviews %>
           </div>
@@ -60,3 +60,22 @@
     </div>
   </div>
 </div>
+
+
+<!-- Bootstrap modal to edit a review posted by the user-->
+<div class="modal fade" id="editReview" tabindex="-1" role="dialog" aria-labelledby="editReviewlabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <%= render partial: 'reviews/review_form', locals: { request_method: :patch, button_text: 'Update Review', remote: false, object: Review.new, path: "" } %>
+      </div>
+    </div>
+  </div>
+</div>
+

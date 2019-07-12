@@ -1,5 +1,6 @@
 class ReportReviewsController < ApplicationController
-  before_action :set_review, only: [:report, :delete_reported_review]
+  before_action :set_review, only: [:report, :delete_complaint]
+  before_action :authenticate_admin, except: [:report]
 
   def report
     if @review
@@ -10,13 +11,15 @@ class ReportReviewsController < ApplicationController
       end
       redirect_to movie_path(@review.movie.id)
     end
-    byebug
   end
 
   def index
+    @reported_reviews = ReportedReview.includes(:user, review: [:user])
   end
 
-  def delete_reported_review
+  def delete_complaint
+    ReportedReview.where(review_id: @review.id).destroy_all
+    redirect_to reported_reviews_path
   end
 
   private

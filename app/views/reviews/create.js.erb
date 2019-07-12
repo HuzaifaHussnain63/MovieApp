@@ -1,2 +1,2 @@
-$(".reviews").prepend("<%= escape_javascript(render partial: 'movies/review', locals: { review: @review }) %>");
+$(".reviews").prepend("<%= escape_javascript(render partial: 'movies/review', locals: { review: @review, reported_reviews_by_user: @reviews_reported_by_user }) %>");
 $('.review-form-row').remove();

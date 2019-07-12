@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :allow_deletion?, only: [:destroy]
   before_action :set_review, only: [:update, :destroy]
-  before_action :find_movie, only: [:update, :destroy]
+  before_action :find_movie, only: [:update, :destroy, :create]
 
   def create
      @review = Review.new(review_params)
+     @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
 
      if @review.save
       respond_to do |format|
