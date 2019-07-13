@@ -43,3 +43,7 @@ body {
 .golden-star {
   color: #FFD700
 }
+/*style for dropdown in reported review page*/
+.dropdown {
+  display: inline;
+}

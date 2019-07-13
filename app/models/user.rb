@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_many :reviews
-  has_many :reported_reviews
+  has_many :reviews, dependent: :destroy
+  has_many :reported_reviews, dependent: :destroy
 
   def admin?
     self.admin

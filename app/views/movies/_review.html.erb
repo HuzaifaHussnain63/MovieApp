@@ -13,16 +13,16 @@
       <% if allow_review_deletion?(review) %>
         <%= link_to fa_icon('trash 2x', class: 'pull-right'), movie_review_path(review.movie_id, review), method: :delete %>
       <% end %>
-      <% if user_signed_in? && current_user.id == review.user.id %>
-        <%= link_to fa_icon('edit  2x', class: 'pull-right'), '#',data: {toggle: 'modal', target: '#editReview'} %>
+      <% if user_signed_in? && (current_user.id == review.user.id || current_user.admin) %>
+        <%= link_to fa_icon('edit  2x', class: 'pull-right review-edit-button', id: review.id), '#',data: {toggle: 'modal', target: '#editReview'} %>
       <% end %>
-      <% if !review.id.in?(reported_reviews_by_user) && current_user.id != review.user_id && !current_user.admin%>
+      <% if user_signed_in? && !review.id.in?(reported_reviews_by_user) && current_user.id != review.user_id && !current_user.admin%>
         <%= link_to 'report', report_review_path(review.id), class: 'pull-right' %>
       <% end %>
 
     </div>
     <% if review.comment != '' %>
-      <div class="card-body">
+      <div class="card-body" id="review_<%= review.id %>">
         <%= review.comment %>
       </div>
     <% end %>

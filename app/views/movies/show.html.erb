@@ -73,7 +73,7 @@
         </button>
       </div>
       <div class='modal-body'>
-        <%= render partial: 'reviews/review_form', locals: { request_method: :patch, button_text: 'Update Review', remote: false, object: Review.new, path: "" } %>
+        <%= render partial: 'reviews/review_form', locals: { request_method: :patch, button_text: 'Update Review', remote: false, object: @review, path: movie_review_path(@movie.id,-1) } %>
       </div>
     </div>
   </div>

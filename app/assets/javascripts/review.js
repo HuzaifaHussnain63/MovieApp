@@ -8,3 +8,14 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function(){
+  $('.review-edit-button').on('click',function(e){
+    var review_id = $(this).attr('id')
+    var review_comment = $('#review_'+review_id).text()
+    review_comment = $.trim(review_comment)
+    var action = $('.modal').find('#new_review').attr('action')
+    action = action.replace('-1', review_id)
+    $('.modal').find('#new_review').attr('action', action)
+    $('.modal').find('#review_comment').text(  review_comment)
+  });
+});
