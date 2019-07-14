@@ -15,6 +15,11 @@ class Review < ApplicationRecord
   after_destroy do |instance|
     @movie = Movie.find(instance.movie_id)
     @movie.rating = @movie.reviews.average(:rating)
+
+    if @movie.rating.nil?
+      @movie.rating = 0.0
+    end
+
     @movie.save
   end
 

@@ -1,9 +1,64 @@
-<div class='row'>
-  <% @movies.each do |movie| %>
-    <div class='col-lg-3 col-md-4 col-sm-2'>
-      <div class='p-3'>
-        <%= render partial: 'movie_card', locals: { movie: movie } %>
-      </div>
+<ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
+  <% if @top_movies && @top_movies.any? %>
+  <li class="nav-item">
+    <a class="nav-link active" id="top-tab" data-toggle="tab" href="#top" role="tab" aria-controls="review" aria-selected="false"><h5>Top Rated</h5></a>
+  </li>
+  <% end %>
+
+  <% if @latest && @latest.any? %>
+  <li class="nav-item">
+    <a class="nav-link" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="cast" aria-selected="true"><h5>Latest Release</h5></a>
+  </li>
+  <% end %>
+
+  <% if @upcoming && @upcoming.any? %>
+  <li class="nav-item">
+    <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="photo" aria-selected="false"><h5>Upcoming</h5></a>
+  </li>
+  <% end %>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+
+<% if @top_movies %>
+  <div class="tab-pane fade active show" id="top" role="tabpanel" aria-labelledby="top-tab">
+    <div class='row'>
+      <% @top_movies.each do |movie| %>
+        <div class='col-lg-3 col-md-4 col-sm-2'>
+          <div class='p-3'>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          </div>
+        </div>
+      <% end %>
     </div>
+  </div>
+  <% end %>
+
+<% if @latest %>
+  <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+    <div class='row'>
+      <% @latest.each do |movie| %>
+        <div class='col-lg-3 col-md-4 col-sm-2'>
+          <div class='p-3'>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @upcoming %>
+  <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+    <div class='row'>
+      <% @upcoming.each do |movie| %>
+        <div class='col-lg-3 col-md-4 col-sm-2'>
+          <div class='p-3'>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <% end %>
 </div>
