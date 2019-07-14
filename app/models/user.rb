@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :reported_reviews, dependent: :destroy
+  has_many :favourites, dependent: :destroy
 
   def admin?
     self.admin

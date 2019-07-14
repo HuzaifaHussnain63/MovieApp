@@ -64,3 +64,8 @@
 .pagination {
   justify-content: center;
 }
+
+/* Style for favourite star*/
+.favourite-star{
+  color: gold;
+}
