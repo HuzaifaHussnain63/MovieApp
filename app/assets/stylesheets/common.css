@@ -1,7 +1,77 @@
-nav .dropdown-item {
-  background-color: #343A40;
+/* Styles for navbar */
+nav .dropdown-item,.dropdown-menu.review-action  {
+  background-color: #101010;
+  color: #BCB5A9 !important;
 }
 
 nav .dropdown-item:hover {
-  background-color: #043A40;
+  background-color: #1B201F;
+  color: white !important;
+}
+
+.nav-item:hover {
+  background-color: #1B201F !important;
+}
+
+nav.bg-dark{
+  background-color: #101010 !important;
+}
+
+/* Styles for different cards like reveiw card, Movie Card*/
+body, .card {
+  background-color: #1B201F !important;
+  color: #BCB5A9 !important;
+}
+
+.card-header {
+  background-color: #101010 !important;
+}
+
+div.row, .card {
+  border-color: #101010 !important;
+}
+
+a.fa {
+  background-color: #1B201F !important;
+}
+
+/* Styles for movie description text*/
+.movie-description p span[style] {
+  background-color: #1B201F !important;
+  color: #BCB5A9 !important;
+}
+
+/* Styles for buttons */
+.btn-primary {
+  background-color: #3E4745 !important ;
+  border: none !important;
+}
+
+.btn-primary:hover {
+   background-color: #101010 !important;
+}
+
+/* Styles for forms */
+.row.adding textarea {
+  background-color: #1B201F;
+  color: #BCB5A9;
+}
+
+input[type=text], input[type=file], input[type=date]  {
+  background-color: #1B201F;
+}
+
+div.modal {
+  color: black;
+}
+
+/* Styles for nav tabs on movie show page and homepage*/
+.nav-tabs .nav-link.active,.nav-tabs .nav-link:hover  {
+  background-color: #101010 !important;
+  color: #BCB5A9 !important;
+  border: none !important;
+}
+
+.nav-tabs .nav-link {
+  color: #BCB5A9;
 }

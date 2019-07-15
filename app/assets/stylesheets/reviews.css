@@ -43,7 +43,13 @@ body {
 .golden-star {
   color: #FFD700
 }
+
 /*style for dropdown in reported review page*/
 .dropdown {
   display: inline;
+}
+
+/* Styles for Reported Review actions*/
+.dropdown-menu.review-action a {
+  color: #BCB5A9 !important;
 }

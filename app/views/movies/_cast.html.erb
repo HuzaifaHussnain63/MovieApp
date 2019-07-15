@@ -1,4 +1,4 @@
-<h2>Actors<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
+<h2 class='pl-2'>Actors<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
 <% if @movie.actors.any? %>
   <div class='col pt-3'>
     <% @movie.actors.each do |actor| %>

@@ -9,7 +9,7 @@
         <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
         <h5><%= @movie.genre %></h5>
         <h6><%= @movie.rating.round(1) %></h6>
-        <h5 class='mt-5'><%= raw @movie.description %></h5>
+        <h5 class='mt-5 movie-description'><%= raw @movie.description %></h5>
         <% if user_signed_in? && allow_posting_review(current_user, @movie) %>
           <h2 class='pt-5 review-form-row adding'>Add Review</h2>
           <%= render partial: 'reviews/review_form', locals: { request_method: :post, button_text: 'Post Review', remote: true, object: @review, form_class: 'adding', path: movie_reviews_path(@movie.id) } %>
@@ -25,14 +25,14 @@
       </div>
     </div>
 
-    <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
-      <li class="nav-item">
+    <ul class="nav nav-tabs pt-3 border-0" id="myTab" role="tablist">
+      <li class="nav-item border-0">
         <a class="nav-link active" id="review-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="review" aria-selected="false"><h5>Reviews</h5></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item border-0">
         <a class="nav-link" id="cast-tab" data-toggle="tab" href="#cast" role="tab" aria-controls="cast" aria-selected="true"><h5>Movie Cast</h5></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item border-0">
         <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photo" aria-selected="false"><h5>Photo Gallery</h5></a>
       </li>
     </ul>

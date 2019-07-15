@@ -69,3 +69,12 @@
 .favourite-star{
   color: gold;
 }
+
+/* Styles for fa icons*/
+i.fa {
+  color: #ABC4BA;
+}
+
+i.fa:hover{
+   color: #5D6B66 !important;
+}

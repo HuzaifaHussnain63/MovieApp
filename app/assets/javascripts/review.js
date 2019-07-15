@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.review-edit-button').on('click',function(e){
+    alert("hello")
     var review_id = $(this).attr('id')
     var review_comment = $('#review_'+review_id).text()
     review_comment = $.trim(review_comment)

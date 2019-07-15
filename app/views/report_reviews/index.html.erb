@@ -21,7 +21,7 @@
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Actions
               </button>
-              <div class="dropdown-menu m-1" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-menu m-1 review-action" aria-labelledby="dropdownMenuButton">
                 <%= link_to 'Delete Complaint', delete_complaint_path(reported.review_id), method: :delete %>
                 <%= link_to 'Delete Review', movie_review_path(reported.review.movie_id, reported.review_id), method: :delete %>
               </div>
