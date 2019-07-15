@@ -4,11 +4,9 @@
     <div class="middle">
       <div class="text font-weight-bold">
         <%= movie.genre %>
-        <div class='clearfix'></div>
-        <%= movie.rating.round(1) %>
       </div>
     </div>
-    <h6 class='pt-1 pl-2'><%= movie.title %></h6>
-    <h6 class='pl-2'><%= (raw movie.release_date.year) %></h6>
+    <h5 class='pt-1 pl-2'><%= movie.title %></h5>
+    <h6><span class="fa fa-star golden-star pl-2 pb-1 pr-2"></span><%= movie.rating.round(1) %> / 5.0</h6>
   </div>
 <% end %>

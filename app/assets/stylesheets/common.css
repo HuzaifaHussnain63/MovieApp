@@ -57,7 +57,7 @@ a.fa {
   color: #BCB5A9;
 }
 
-input[type=text], input[type=file], input[type=date]  {
+input[type=text], input[type=file], input[type=date], input[type=email], input[type=password] {
   background-color: #1B201F;
 }
 
@@ -74,4 +74,8 @@ div.modal {
 
 .nav-tabs .nav-link {
   color: #BCB5A9;
+}
+
+a {
+  color: #BCB5A9 !important;
 }

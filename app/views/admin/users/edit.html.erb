@@ -1,0 +1,5 @@
+<div class='col-lg-10 offset-lg-1 col-md-10 offset-md-1'>
+  <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-lg-6 offset-lg-3">
+    <%= render partial: 'form', locals: { form_method: :patch, form_path: admin_user_path(@user.id), button_text: 'Update User' , form_model: @user } %>
+  </div>
+</div>

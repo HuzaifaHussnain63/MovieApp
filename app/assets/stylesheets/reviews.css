@@ -41,7 +41,7 @@ body {
 
 /* styles for review displaying */
 .golden-star {
-  color: #FFD700
+  color: #FFD700 !important;
 }
 
 /*style for dropdown in reported review page*/
