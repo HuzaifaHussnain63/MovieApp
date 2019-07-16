@@ -1,4 +1,4 @@
-<h2 class='pl-2'>Actors<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
+<h2 class='pl-2'>Actors<%= link_to fa_icon('user-plus 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
 <% if @movie.actors.any? %>
   <div class='col pt-3'>
     <% @movie.actors.each do |actor| %>
@@ -6,7 +6,7 @@
         <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
         <%= actor.name %>
         <% if admin_logged_in? %>
-          <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pt-5'), detach_actor_from_movie_path(@movie.id, actor.id), method: :delete, data: { confirm: 'Are you sure you want to remove this actor from movie cast?' } %>
+          <%= link_to fa_icon('trash 2x', class: 'pull-right pt-5'), detach_actor_from_movie_path(@movie.id, actor.id), method: :delete, data: { confirm: 'Are you sure you want to remove this actor from movie cast?' } %>
         <% end %>
       </div>
     <% end %>

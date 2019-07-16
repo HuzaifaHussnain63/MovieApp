@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+
   before_action :authenticate_admin
   before_action :set_user, only: [:destroy, :edit, :update]
 
@@ -48,6 +49,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :password, :password_confirmation, :avatar)
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      return params.require(:user).permit(:email, :name, :avatar)
+    else
+      return params.require(:user).permit(:email, :name, :password, :password_confirmation, :avatar)
+    end
   end
+
 end
