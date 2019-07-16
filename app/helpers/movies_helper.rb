@@ -15,4 +15,8 @@ module MoviesHelper
     return true
   end
 
+  def favourite_movie?(movie)
+    current_user.favourites.exists?(movie.id)
+  end
+
 end

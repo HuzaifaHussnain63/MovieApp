@@ -17,15 +17,17 @@
   </div>
 </div>
 
-<div class='row border mt-3'>
-  <div class='col-lg-12 p-0'>
-    <div class='card border-0'>
-      <div class='card-header'>
-        <h3>Favourite Movies</h3>
-      </div>
-      <div class='card-body'>
-
+<% if @favourite_movies && @favourite_movies.any? %>
+  <div class='row border mt-3'>
+    <div class='col-lg-12 p-0'>
+      <div class='card border-0'>
+        <div class='card-header'>
+          <h3>Favourite Movies</h3>
+        </div>
+        <div class='card-body'>
+          <%= render partial: 'movie_listing', locals: { favourites: @favourite_movies } %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

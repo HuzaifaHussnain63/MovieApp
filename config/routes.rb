@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'reported_reviews', to: 'report_reviews#index', as: :reported_reviews
   delete 'reported_review/:id/remove', to: 'report_reviews#delete_complaint', as: :delete_complaint
   get 'user/profile/:id', to: 'users#profile', as: :user_profile
+  get 'movie/favourite/:id/:movie_id', to: 'users#add_favourite', as: :add_favourite
+  get 'movie/remove_favourite/:id/:movie_id', to: 'users#remove_favourite', as: :remove_favourite
 
   devise_for :users
 

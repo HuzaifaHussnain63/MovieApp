@@ -9,7 +9,7 @@
     <% if user_signed_in? %>
       <ul class='navbar-nav order-0 mr-5'>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="moviesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+          <a class="nav-link dropdown-toggle" href="#" id="moviesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
           <div class="dropdown-menu p-0" aria-labelledby="moviesDropdown">
             <%= link_to 'Profile', user_profile_path(current_user.id), class: 'nav-link dropdown-item' %>
             <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link dropdown-item' %>

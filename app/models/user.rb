@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :reported_reviews, dependent: :destroy
-  has_many :favourites, dependent: :destroy
+  has_and_belongs_to_many :favourites, class_name: 'Movie', join_table: 'favourite_movies'
 
   paginates_per 5
 

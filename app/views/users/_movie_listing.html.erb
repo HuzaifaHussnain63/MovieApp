@@ -1,0 +1,9 @@
+<div class='col pt-3'>
+  <% favourites.each do |movie| %>
+    <div class='pt-3 border-bottom pb-2'>
+      <%= image_tag url_for(movie.thumbnail), class: 'img-fluid movie-listing' %>
+      <%= link_to movie.title, movie_path(movie.id) %>
+      <%= link_to fa_icon('star 2x', class: 'golden-star pull-right pt-5'), remove_favourite_path(current_user.id, movie.id) %>
+    </div>
+  <% end %>
+</div>

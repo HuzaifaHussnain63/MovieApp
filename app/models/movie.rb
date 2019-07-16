@@ -9,6 +9,7 @@ class Movie < ApplicationRecord
   has_many_attached :posters
 
   has_and_belongs_to_many :actors
+  has_and_belongs_to_many :favourites, class_name: 'User', join_table: 'favourite_movies'
   has_many :reviews, dependent: :destroy
 
   paginates_per 5
