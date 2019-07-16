@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'user/profile/:id', to: 'users#profile', as: :user_profile
   get 'movie/favourite/:id/:movie_id', to: 'users#add_favourite', as: :add_favourite
   get 'movie/remove_favourite/:id/:movie_id', to: 'users#remove_favourite', as: :remove_favourite
+  post 'movie/search_movie', to: 'movies#search_movie', as: :search_movie
 
   devise_for :users
 

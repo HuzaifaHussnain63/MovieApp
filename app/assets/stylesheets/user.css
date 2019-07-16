@@ -8,3 +8,9 @@ img.movie-listing {
   width: 80px !important;
   height: 80px !important;
 }
+
+/* Styles for movie search result */
+.movie-search {
+  width: 40px !important;
+  height: 60px !important;
+}

@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authenticate_admin, except: [:show]
-  before_action :set_movie, except: [:new, :create, :index]
+  before_action :set_movie, except: [:new, :create, :index, :search_movie]
   before_action :set_actor, only: [:detach_actor, :attach_actor]
 
   def index
@@ -93,6 +93,17 @@ class MoviesController < ApplicationController
   def add_poster
     @movie.posters.attach(params[:adding_poster][:posters])
     redirect_to movie_path(@movie)
+  end
+
+  def search_movie
+    if params[:search_text] != ''
+      @result = Movie.where('title LIKE ?', "%#{params[:search_text]}%")
+    else
+      @result = []
+    end
+      respond_to do |format|
+        format.js { render 'movie_search_response' }
+      end
   end
 
   private

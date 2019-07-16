@@ -78,3 +78,19 @@ i.fa {
 i.fa:hover{
    color: #5D6B66 !important;
 }
+
+/* Movie Search result */
+div#search_suggestion > ul {
+  background-color: #0F0F0F ;
+  color: #BCB5A9 !important;
+  list-style: none !important;
+}
+
+div#search_suggestion li:hover {
+  background-color: #1C201F !important;
+}
+
+div#search_suggestion li a:hover {
+  text-decoration: none !important;
+}
+

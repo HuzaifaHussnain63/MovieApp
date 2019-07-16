@@ -1,3 +1,13 @@
+<div class='row pt-5 pb-2'>
+  <div class='col-lg-9'>
+    <%= form_tag url: :search_movie do %>
+      <%= text_field_tag 'search_text', nil, placeholder: 'Type here for search', autocomplete: 'off', class: 'form-control' %>
+    <% end %>
+    <div id='search_suggestion'>
+    </div>
+  </div>
+  </div>
+
 <ul class="nav nav-tabs pt-3 border-0 ml-3" id="myTab" role="tablist">
   <% if @top_movies && @top_movies.any? %>
   <li class="nav-item">
