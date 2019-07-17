@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     else
       flash[:danger] = 'Could not add this movie to your favourites.'
     end
-    redirect_back(fallback_location: home_index_path)
+
   end
 
   def remove_favourite
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     else
       flash[:danger] = 'Could not remove this movie form your favourites.'
     end
-    redirect_back(fallback_location: home_index_path)
   end
 
   private

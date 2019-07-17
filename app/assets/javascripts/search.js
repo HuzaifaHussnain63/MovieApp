@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  $('#search_text').on('keyup', search_ajax)
-  $('#genre').on('change', search_ajax)
+  $('.container').on('keyup', '#search_text', search_ajax)
+  $('.container').on('change', '#genre', search_ajax)
   $('body').on('click', function(){
     $('div#search_suggestion').empty()
   })

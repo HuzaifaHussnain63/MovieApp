@@ -26,9 +26,9 @@
 
         <% if user_signed_in? %>
           <% if favourite_movie?(@movie) %>
-            <h3><%= link_to fa_icon('star ', class: 'pull-right favourite-star golden-star pr-2 pt-1 border-1'), remove_favourite_path(current_user.id, @movie) %></h3>
+            <h3 class='favourite-h'><%= link_to fa_icon('star ', class: 'pull-right favourite-star golden-star pr-2 pt-1 border-1'), remove_favourite_path(current_user.id, @movie), remote: true %></h3>
           <% else %>
-            <h3><%= link_to fa_icon('star ', class: 'pull-right favourite-star pr-2 pt-1 border-1'), add_favourite_path(current_user.id, @movie) %></h3>
+            <h3 class='favourite-h'><%= link_to fa_icon('star ', class: 'pull-right favourite-star pr-2 pt-1 border-1'), add_favourite_path(current_user.id, @movie), remote: true %></h3>
           <% end %>
         <% end %>
 
