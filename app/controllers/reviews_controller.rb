@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
      @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
 
      if @review.save
+      flash[:notice] = 'Successfully Posted the review.'
       respond_to do |format|
         format.js { render }
       end
