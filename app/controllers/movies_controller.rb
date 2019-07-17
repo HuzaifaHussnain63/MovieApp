@@ -97,13 +97,20 @@ class MoviesController < ApplicationController
 
   def search_movie
     if params[:search_text] != ''
-      @result = Movie.where('title LIKE ?', "%#{params[:search_text]}%")
+      if params[:genre] == 'Genre'
+        @result = Movie.where('title LIKE ?', "%#{params[:search_text]}%").limit(5).page params[:page]
+      else
+        @result = Movie.where('title LIKE ? AND genre = ?', "%#{params[:search_text]}%", params[:genre]).limit(5).page params[:page]
+      end
     else
       @result = []
     end
-      respond_to do |format|
-        format.js { render 'movie_search_response' }
-      end
+    @genres = Movie.all.distinct.pluck(:genre)
+    @genres.prepend("Genre")
+    respond_to do |format|
+      format.js { render 'movie_search_response' }
+      format.html { render }
+    end
   end
 
   private

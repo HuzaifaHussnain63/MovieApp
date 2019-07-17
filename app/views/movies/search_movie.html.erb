@@ -1,0 +1,38 @@
+<div class='row'>
+  <div class='col-lg-12 pt-5'>
+
+    <%= form_tag search_movie_url, class: 'form-inline' do %>
+      <div class='col-lg-9 form-group'>
+        <%= text_field_tag 'search_text', nil, placeholder: 'Type here for search', required: true, autocomplete: 'off', class: 'form-control col-lg-12' %>
+      </div>
+      <div class='col-lg-3'>
+        <%= select_tag "genre", options_for_select(@genres.collect{ |g| [g, g] }), class: 'form-control col-lg-12'  %>
+      </div>
+    <% end %>
+
+    <div id='search_suggestion' class='col-lg-9'>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-12 pt-3 pl-4'>
+    <% if @result.any? %>
+      <h3>Search results for '<%= params[:search_text] %>': </h3>
+      <div class='row'>
+        <% @result.each do |movie| %>
+          <%= render partial: 'home/movie_card', locals: { movie: movie } %>
+        <% end %>
+      </div>
+
+    <% else %>
+      <h3>No results found for ' <%= params[:search_text] %> ': </h3>
+    <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-lg-12 pt-5'>
+    <%= paginate @result, window: 2 %>
+  </div>
+</div>

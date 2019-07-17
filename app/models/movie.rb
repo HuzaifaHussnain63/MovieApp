@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
   has_and_belongs_to_many :favourite_by, class_name: 'User', join_table: 'favourite_movies'
   has_many :reviews, dependent: :destroy
 
-  paginates_per 5
+  paginates_per 8
 
   private
   def capitalize_attributes

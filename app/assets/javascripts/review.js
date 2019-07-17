@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  $('.review-edit-button').on('click',function(e){
+  $('.reviews').on('click', '.review-edit-button', function(e){
     var review_id = $(this).attr('id')
     var review_comment = $('#review_'+review_id).text()
     review_comment = $.trim(review_comment)

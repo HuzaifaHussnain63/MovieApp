@@ -1,14 +1,14 @@
 <div class='col-lg-3 col-md-4 col-sm-2'>
   <div class='p-1'>
     <%= link_to movie_path(movie) do %>
-      <div class='card p-0 border movie_card rounded-0'>
+      <div class='card p-0 mt-4 border movie_card rounded-0'>
         <%= image_tag url_for(movie.thumbnail), class: 'card-img-top movie_thumbnail img-fluid' %>
         <div class="middle">
           <div class="text font-weight-bold">
             <%= movie.genre %>
           </div>
         </div>
-        <h5 class='pt-1 pl-2'><%= movie.title %></h5>
+        <h5 class='pt-1 pl-2 text-truncate'><%= movie.title %></h5>
         <h6><span class="fa fa-star golden-star pl-2 pb-1 pr-2"></span><%= movie.rating.round(1) %> / 5.0</h6>
       </div>
     <% end %>
