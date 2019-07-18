@@ -7,4 +7,5 @@ module ApplicationHelper
     return 'alert-primary' if key == :notice
     return 'alert-danger'
   end
+
 end

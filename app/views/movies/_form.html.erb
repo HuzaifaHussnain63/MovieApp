@@ -1,4 +1,4 @@
-<%= form_with(model: @movie, local:true, method: request_method) do |form| %>
+<%= form_with(model: @movie, id: 'movie_form', local:true, method: request_method) do |form| %>
   <% if @movie.present? && @movie.errors.any? %>
     <div id="error_explanation">
       <h3><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h3>

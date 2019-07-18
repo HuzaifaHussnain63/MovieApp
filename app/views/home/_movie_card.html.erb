@@ -2,7 +2,7 @@
   <div class='p-1'>
     <%= link_to movie_path(movie) do %>
       <div class='card p-0 mt-4 border movie_card rounded-0'>
-        <%= image_tag url_for(movie.thumbnail), class: 'card-img-top movie_thumbnail img-fluid' %>
+        <%= image_tag url_for(movie.thumbnail), class: 'card-img-top movie_thumbnail img-fluid rounded-0' %>
         <div class="middle">
           <div class="text font-weight-bold">
             <button class='btn btn-primary'>See Details</button>

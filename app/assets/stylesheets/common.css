@@ -79,3 +79,20 @@ div.modal {
 a {
   color: #BCB5A9 !important;
 }
+
+.card, .container > .row > div {
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for paginator */
+.page-item a {
+  background-color: #3E4745 !important;
+}
+
+.page-item.active a {
+  background-color: #0F0F0F  !important;
+}
+
+.page-item a {
+  border-color: #0F0F0F !important;
+}

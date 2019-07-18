@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
   end
 
+  namespace :api do
+    resources :movies, only: [:index]
+  end
+
   resources :actors, param: :actor_id
   resources :movies do
     resources :reviews, only: [:create, :destroy, :update]

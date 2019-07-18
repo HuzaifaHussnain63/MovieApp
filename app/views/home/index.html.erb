@@ -1,67 +1,73 @@
-<div class='row pt-5 pb-2'>
+<div class='row'>
   <div class='col-lg-12'>
-    <%= form_tag search_movie_url, class: 'form-inline' do %>
-      <div class='col-lg-9 form-group'>
-        <%= text_field_tag 'search_text', nil, placeholder: 'Type here for search', required: true, autocomplete: 'off', class: 'form-control col-lg-12' %>
+
+    <div class='row pt-5 pb-2'>
+      <div class='col-lg-12'>
+        <%= form_tag search_movie_url, class: 'form-inline' do %>
+          <div class='col-lg-9 form-group'>
+            <%= text_field_tag 'search_text', nil, placeholder: 'Type here for search', required: true, autocomplete: 'off', class: 'form-control col-lg-12' %>
+          </div>
+          <div class='col-lg-3'>
+            <%= select_tag "genre", options_for_select(@genres.collect{ |g| [g, g] }), class: 'form-control col-lg-12'  %>
+          </div>
+        <% end %>
+        <div id='search_suggestion' class='col-lg-9'>
+        </div>
       </div>
-      <div class='col-lg-3'>
-        <%= select_tag "genre", options_for_select(@genres.collect{ |g| [g, g] }), class: 'form-control col-lg-12'  %>
+    </div>
+
+    <ul class="nav nav-tabs pt-3 border-0 ml-3" id="myTab" role="tablist">
+      <% if @top_movies && @top_movies.any? %>
+      <li class="nav-item">
+        <a class="nav-link active mb-3" id="top-tab" data-toggle="tab" href="#top" role="tab" aria-controls="review" aria-selected="false"><h5>Top Rated</h5></a>
+      </li>
+      <% end %>
+
+      <% if @latest && @latest.any? %>
+      <li class="nav-item">
+        <a class="nav-link mb-3" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="cast" aria-selected="true"><h5>Latest Release</h5></a>
+      </li>
+      <% end %>
+
+      <% if @upcoming && @upcoming.any? %>
+      <li class="nav-item">
+        <a class="nav-link mb-3" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="photo" aria-selected="false"><h5>Upcoming</h5></a>
+      </li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+    <% if @top_movies %>
+      <div class="tab-pane fade active show" id="top" role="tabpanel" aria-labelledby="top-tab">
+        <div class='row'>
+          <% @top_movies.each do |movie| %>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+    <% if @latest %>
+      <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+        <div class='row'>
+          <% @latest.each do |movie| %>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <div id='search_suggestion' class='col-lg-9'>
-    </div>
-  </div>
-</div>
 
-<ul class="nav nav-tabs pt-3 border-0 ml-3" id="myTab" role="tablist">
-  <% if @top_movies && @top_movies.any? %>
-  <li class="nav-item">
-    <a class="nav-link active mb-3" id="top-tab" data-toggle="tab" href="#top" role="tab" aria-controls="review" aria-selected="false"><h5>Top Rated</h5></a>
-  </li>
-  <% end %>
-
-  <% if @latest && @latest.any? %>
-  <li class="nav-item">
-    <a class="nav-link mb-3" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="cast" aria-selected="true"><h5>Latest Release</h5></a>
-  </li>
-  <% end %>
-
-  <% if @upcoming && @upcoming.any? %>
-  <li class="nav-item">
-    <a class="nav-link mb-3" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="photo" aria-selected="false"><h5>Upcoming</h5></a>
-  </li>
-  <% end %>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-
-<% if @top_movies %>
-  <div class="tab-pane fade active show" id="top" role="tabpanel" aria-labelledby="top-tab">
-    <div class='row'>
-      <% @top_movies.each do |movie| %>
-        <%= render partial: 'movie_card', locals: { movie: movie } %>
+    <% if @upcoming %>
+      <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+        <div class='row'>
+          <% @upcoming.each do |movie| %>
+            <%= render partial: 'movie_card', locals: { movie: movie } %>
+          <% end %>
+        </div>
+      </div>
       <% end %>
     </div>
-  </div>
-  <% end %>
 
-<% if @latest %>
-  <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
-    <div class='row'>
-      <% @latest.each do |movie| %>
-        <%= render partial: 'movie_card', locals: { movie: movie } %>
-      <% end %>
-    </div>
   </div>
-<% end %>
-
-<% if @upcoming %>
-  <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
-    <div class='row'>
-      <% @upcoming.each do |movie| %>
-        <%= render partial: 'movie_card', locals: { movie: movie } %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
 </div>
