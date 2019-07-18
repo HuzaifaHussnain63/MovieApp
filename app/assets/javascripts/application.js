@@ -17,3 +17,8 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+//= require_self
+$(document).ready(function(){
+  $(".alert").delay(3000).fadeOut("slow");
+});
+

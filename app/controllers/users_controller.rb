@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user
   before_action :authenticate_user!
+  before_action :allow_adding_removing_favourite?, only: [:add_favourite, :remove_favourite]
 
   def profile
     @favourite_movies = @user.favourites
@@ -29,5 +30,9 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def allow_adding_removing_favourite?
+    @user.id == current_user.id
   end
 end

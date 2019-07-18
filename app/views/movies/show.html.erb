@@ -8,7 +8,7 @@
       <div class='col-lg-6 col-md-6'>
         <h2><%= raw "#{@movie.title} (#{@movie.release_date.year})"%></h2>
         <h5><%= @movie.genre %></h5>
-        <h6><span class="fa fa-star golden-star pr-2"></span><%= @movie.rating.round(1) %> / 5.0</h6>
+        <h6 class='movie-rating'><span class="fa fa-star golden-star pr-2"></span><%= @movie.rating.round(1) %> / 5.0</h6>
         <h5 class='mt-5 movie-description'><%= raw @movie.description %></h5>
 
         <% if user_signed_in? && allow_posting_review(current_user, @movie) %>

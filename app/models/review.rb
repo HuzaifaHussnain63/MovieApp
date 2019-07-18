@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   validates :rating, presence: true
   validates :rating, numericality: { only_integer: true, greater_than: 0, less_than: 6 }
+  validates :user_id, uniqueness: { scope: :movie_id }
 
   belongs_to :movie
   belongs_to :user

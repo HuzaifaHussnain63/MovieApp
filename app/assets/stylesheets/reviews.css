@@ -44,6 +44,10 @@ body {
   color: #FFD700 !important;
 }
 
+i.fa.favourite-star:hover {
+  color: #FFD700 !important;
+}
+
 /*style for dropdown in reported review page*/
 .dropdown {
   display: inline;

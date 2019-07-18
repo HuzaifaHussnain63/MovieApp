@@ -2,3 +2,12 @@ $(".reviews").prepend("<%= escape_javascript(render partial: 'movies/review', lo
 $('.review-form-row.adding').remove();
 $('#flash_messages').remove();
 $(".container").prepend("<%= escape_javascript(render 'shared/flash_messages') %>")
+$(".alert").delay(3000).fadeOut("slow");
+<% flash.clear %>
+$(".movie-rating").html("<span class='fa fa-star golden-star pr-2'></span><%= @movie.rating.round(1) %> / 5.0")
+$('#review-tab').addClass('active')
+$('#reviews').addClass('show active')
+$('#cast-tab').removeClass('active')
+$('#photo-tab').removeClass('active')
+$('#photos').removeClass('show active')
+$('#cast').removeClass('show active')

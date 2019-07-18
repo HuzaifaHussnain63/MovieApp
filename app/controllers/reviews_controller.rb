@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
-  before_action :allow_deletion?, only: [:destroy]
   before_action :set_review, only: [:update, :destroy]
   before_action :find_movie, only: [:update, :destroy, :create]
+  before_action :allow_deletion?, only: [:destroy]
 
   def create
      @review = Review.new(review_params)
@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
 
      if @review.save
       flash[:notice] = 'Successfully Posted the review.'
+      find_movie
       respond_to do |format|
         format.js { render }
       end
