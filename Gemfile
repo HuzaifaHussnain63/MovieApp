@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'active_model_serializers', '~> 0.10.10'
+gem 'activestorage-validator', '~> 0.1.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # Reduces boot times through caching; required in config/boot.rb

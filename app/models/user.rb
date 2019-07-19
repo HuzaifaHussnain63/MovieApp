@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :avatar, presence: true, blob: { content_type: :image }
+
   has_many :reviews, dependent: :destroy
   has_many :reported_reviews, dependent: :destroy
   has_and_belongs_to_many :favourites, class_name: 'Movie', join_table: 'favourite_movies'
