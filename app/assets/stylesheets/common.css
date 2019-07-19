@@ -96,3 +96,7 @@ a {
 .page-item a {
   border-color: #0F0F0F !important;
 }
+ /* styles for errors */
+.error {
+  color: red !important;
+}

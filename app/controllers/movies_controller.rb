@@ -75,7 +75,15 @@ class MoviesController < ApplicationController
   end
 
   def add_trailer
-    @movie.trailer.attach(params[:adding_trailer][:trailer])
+    @trailer = params[:adding_trailer][:trailer]
+
+    if @trailer.content_type.include?('video')
+      @movie.trailer.attach(params[:adding_trailer][:trailer])
+      flash[:notice] = 'Successfully added trailer for the movie.'
+    else
+      flash["danger"] = 'Could not add trailer. Format for the trailer is not correct.'
+    end
+
     redirect_to movie_path(@movie)
   end
 
@@ -91,7 +99,14 @@ class MoviesController < ApplicationController
   end
 
   def add_poster
-    @movie.posters.attach(params[:adding_poster][:posters])
+    @poster = params[:adding_poster][:posters]
+    if @poster.content_type.include?('image')
+      @movie.posters.attach(params[:adding_poster][:posters])
+      flash[:notice] = 'Successfully added poster for the movie'
+    else
+      flash[:danger] = 'Could not add poster. Format for the poster is invalid'
+    end
+
     redirect_to movie_path(@movie)
   end
 

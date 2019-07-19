@@ -17,4 +17,11 @@ class User < ApplicationRecord
   def admin?
     self.admin
   end
+
+  private
+  def check_user_attachments
+   if errors[:avatar].any?
+     avatar.purge if avatar.attached?
+   end
+ end
 end
