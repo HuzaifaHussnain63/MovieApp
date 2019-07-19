@@ -6,6 +6,13 @@
       </div>
       <div class='card-body'>
         <h3><%= @user.name %></h3>
+
+        <% if @user.admin%>
+          <h5>Rank: Admin</h5>
+        <% else %>
+          <h5>Rank: User</h5>
+        <% end %>
+
         <h6><%= @user.email %></h6>
         <% if user_signed_in? && current_user.id == @user.id %>
           <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>

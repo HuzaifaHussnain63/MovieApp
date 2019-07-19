@@ -29,12 +29,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Successfully updates user's details."
-      redirect_to admin_users_path
+      flash[:notice] = "Successfully updated user's details."
     else
       flash[:danger] = 'Something went wrong. Try Again.'
-      render 'edit'
     end
+    redirect_to admin_users_path
   end
 
   def destroy
@@ -50,9 +49,9 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      return params.require(:user).permit(:email, :name, :avatar)
+      return params.require(:user).permit(:email, :name, :avatar, :admin)
     else
-      return params.require(:user).permit(:email, :name, :password, :password_confirmation, :avatar)
+      return params.require(:user).permit(:email, :name, :password, :password_confirmation, :avatar, :admin)
     end
   end
 

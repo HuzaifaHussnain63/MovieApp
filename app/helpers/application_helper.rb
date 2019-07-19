@@ -4,8 +4,8 @@ module ApplicationHelper
   end
 
   def flash_alert_class(key)
-    return 'alert-primary' if key == :notice
-    return 'alert-danger'
+    return 'alert-success' if key == 'notice'
+    return 'alert-warning'
   end
 
 end
