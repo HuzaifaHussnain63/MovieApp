@@ -100,3 +100,8 @@ a {
 .error {
   color: red !important;
 }
+
+/* Styles for golden and favourite star */
+i.favourite-star.golden-star:hover {
+  color: #3E4745 !important;
+}

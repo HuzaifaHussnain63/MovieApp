@@ -95,19 +95,24 @@ class MoviesController < ApplicationController
 
   def remove_poster
     @movie.posters.find(params[:poster_id]).purge
-    redirect_to movie_path(@movie)
   end
 
   def add_poster
-    @poster = params[:adding_poster][:posters]
-    if @poster.content_type.include?('image')
-      @movie.posters.attach(params[:adding_poster][:posters])
-      flash[:notice] = 'Successfully added poster for the movie'
-    else
-      flash[:danger] = 'Could not add poster. Format for the poster is invalid'
-    end
+    if params[:adding_poster]
+      @poster = params[:adding_poster][:posters]
 
-    redirect_to movie_path(@movie)
+      if @poster.content_type.include?('image')
+        @movie.posters.attach(params[:adding_poster][:posters])
+        # to get the id of just added poster i m doing this:
+        @added_poster = @movie.posters.last
+      else
+        flash[:danger] = 'Could not add poster. Format for the poster is invalid'
+        render 'reviews/create_error'
+      end
+    else
+      flash[:danger] = 'Please select a poster'
+      render 'reviews/create_error'
+    end
   end
 
   def search_movie

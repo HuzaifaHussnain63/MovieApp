@@ -1,0 +1,2 @@
+$(".displaying_posters").append("<%= escape_javascript(render partial: 'add_poster_partial', locals: { poster: @added_poster, movie: @movie }) %>")
+$('#addPosterModel').modal("toggle")
