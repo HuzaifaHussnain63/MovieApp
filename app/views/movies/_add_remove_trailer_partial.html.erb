@@ -1,0 +1,8 @@
+<% if movie.trailer.attached? %>
+  <h2 class='pt-3'>Trailer<%= link_to fa_icon('times', class: 'pull-right pb-5'), remove_trailer_from_movie_path(movie.id, movie.trailer.id), remote: true, method: :delete, data: { confirm: 'Are you sure you want to delete this trailer?' } if admin_logged_in? %></h2>
+  <div class='col-12 embed-responsive embed-responsive-16by9'>
+    <%= video_tag rails_blob_path(movie.trailer), controls: true, class: 'embed-responsive-item' %>
+  </div>
+<% elsif admin_logged_in? %>
+  <h3 class='pt-3'>Trailer<%= link_to fa_icon('plus 2x'), '#', class: 'pull-right pb-5', data: {toggle: 'modal', target: '#addTrailerModel'} %></h3>
+<% end %>

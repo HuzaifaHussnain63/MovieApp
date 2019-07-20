@@ -75,22 +75,35 @@ class MoviesController < ApplicationController
   end
 
   def add_trailer
-    @trailer = params[:adding_trailer][:trailer]
+    if params[:adding_trailer]
+      @trailer = params[:adding_trailer][:trailer]
 
-    if @trailer.content_type.include?('video')
-      @movie.trailer.attach(params[:adding_trailer][:trailer])
-      flash[:notice] = 'Successfully added trailer for the movie.'
+      if @trailer.content_type.include?('video')
+        @movie.trailer.attach(params[:adding_trailer][:trailer])
+        set_movie # getting the upated movie object
+        render 'add_remove_trailer'
+      else
+        flash["danger"] = 'Could not add trailer. Format for the trailer is not correct.'
+        render 'reviews/create_error'
+      end
+
     else
-      flash["danger"] = 'Could not add trailer. Format for the trailer is not correct.'
+      flash[:danger] = 'Please select a trailer'
+      render 'reviews/create_error'
     end
 
-    redirect_to movie_path(@movie)
   end
 
   # this action will detach trailer from a movie
   def remove_trailer
-    @movie.trailer.purge
-    redirect_to movie_path(@movie)
+    if @movie.trailer.attached?
+      @movie.trailer.purge
+      set_movie
+      render 'add_remove_trailer' # it will check if trailer exist, and if trailer does not exit it will make appropriate changes in the html
+    else
+      flash[:danger] = 'Movie has no trailer to remove.'
+      render 'reviews/create_error'
+    end
   end
 
   def remove_poster
