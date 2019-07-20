@@ -16,6 +16,6 @@ $(document).ready(function(){
     var action = $('.modal').find('#new_review').attr('action')
     action = action.replace('-1', review_id)
     $('.modal').find('#new_review').attr('action', action)
-    $('.modal').find('#review_comment').text(  review_comment)
+    $('.modal').find('#review_comment').text(review_comment)
   });
 });

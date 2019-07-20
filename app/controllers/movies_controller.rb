@@ -43,7 +43,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id)).map { |actor| [actor.name, actor.id] }
+    actors_not_in_movie
     @review = Review.new
     if user_signed_in?
       @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
@@ -54,24 +54,23 @@ class MoviesController < ApplicationController
   end
 
   def detach_actor
-    if @movie.actors.delete(@actor)
-      flash[:notice] = 'Successfully removed the actor from the movie'
-    else
+    unless @movie.actors.delete(@actor)
       flash[:danger] = 'Could not remove the actor'
+      render 'reviews/create_error'
     end
-
-    redirect_to movie_path(@movie)
+    actors_not_in_movie
+    render
   end
 
   # this action will add actor to movie cast
   def attach_actor
-    if @movie.actors << @actor
-      flash[:notice] = 'Successfully added the actor to the movie'
-    else
+    if @movie.actors.include? @actor
       flash[:danger] = 'Could not add the actor'
+      render 'reviews/create_error'
+    else
+      @movie.actors << @actor
     end
-
-    redirect_to movie_path(@movie)
+    actors_not_in_movie
   end
 
   def add_trailer
@@ -153,6 +152,10 @@ class MoviesController < ApplicationController
 
   def set_movie
     @movie = Movie.find(params[:id])
+  end
+
+  def actors_not_in_movie
+    @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id)).map { |actor| [actor.name, actor.id] }
   end
 
 end
