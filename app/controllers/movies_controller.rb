@@ -155,7 +155,7 @@ class MoviesController < ApplicationController
   end
 
   def actors_not_in_movie
-    @actors_not_in_movie = Actor.where.not(id: ActorsMovie.where(movie_id: @movie.id).pluck(:actor_id)).map { |actor| [actor.name, actor.id] }
+    @actors_not_in_movie = (Actor.all - @movie.actors).map { |actor| [actor.name, actor.id] }
   end
 
 end
