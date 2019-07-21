@@ -9,7 +9,6 @@ class ReportReviewsController < ApplicationController
       else
         flash[:danger] = 'Could not report the review.'
       end
-      redirect_to movie_path(@review.movie.id)
     end
   end
 
