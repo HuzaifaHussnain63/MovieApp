@@ -5,8 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
      @review = Review.new(review_params)
-     @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
-
+     set_reported_reviews_by_user(current_user.id, @movie.id)
      if @review.save
       flash[:notice] = 'Successfully Posted the review.'
       find_movie
@@ -32,12 +31,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    set_reported_reviews_by_user(current_user.id, @review.movie_id)
     if @review.update(review_params)
       flash[:notice] = 'Successfully updated the review'
     else
       flash[:danger] = 'Could not update the review'
     end
-    redirect_to movie_path(@movie)
+    set_review
   end
 
   private
@@ -67,6 +67,10 @@ class ReviewsController < ApplicationController
 
   def find_movie
     @movie = Movie.find(params[:movie_id])
+  end
+
+  def set_reported_reviews_by_user(user_id, movie_id)
+    @reviews_reported_by_user = ReportedReview.where(user_id: user_id, movie_id: movie_id).pluck(:review_id)
   end
 
 end

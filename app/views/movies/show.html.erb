@@ -13,7 +13,7 @@
 
         <% if user_signed_in? && allow_posting_review(current_user, @movie) %>
           <h2 class='pt-5 review-form-row adding'>Add Review</h2>
-          <%= render partial: 'reviews/review_form', locals: { id: 'edit', request_method: :post, button_text: 'Post Review', remote: true, object: @review, form_class: 'adding', path: movie_reviews_path(@movie.id) } %>
+          <%= render partial: 'reviews/review_form', locals: { id: 'new', request_method: :post, button_text: 'Post Review', remote: true, object: @review, form_class: 'adding', path: movie_reviews_path(@movie.id) } %>
         <% end %>
 
       </div>
@@ -83,7 +83,7 @@
         </button>
       </div>
       <div class='modal-body'>
-        <%= render partial: 'reviews/review_form', locals: {id: 'new', request_method: :patch, button_text: 'Update Review', remote: false, object: @review, form_class: 'editing', path: movie_review_path(@movie.id,-1) } %>
+        <%= render partial: 'reviews/review_form', locals: {id: 'edit', request_method: :patch, button_text: 'Update Review', remote: true, object: @review, form_class: 'editing', path: movie_review_path(@movie.id,-1) } %>
       </div>
     </div>
   </div>

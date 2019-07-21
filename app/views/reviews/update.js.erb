@@ -1,0 +1,11 @@
+$('#card_<%= @review.id %>').replaceWith("<%= escape_javascript(render partial: 'movies/review', locals: { review: @review, reported_reviews_by_user: @reviews_reported_by_user }) %>")
+$('#flash_messages').remove();
+$(".container").prepend("<%= escape_javascript(render 'shared/flash_messages') %>")
+$(".alert").delay(3000).fadeOut("slow");
+<% flash.clear %>
+$('#editReview').modal("toggle");
+$('#edit_review_form').each(function(){
+    this.reset();
+});
+// reseting the action of the edit review form so that form action can be updated(done in js file which populates the form data) when editing a reveiew again without reloading the page //
+$('#editReview').find('#edit_review_form').attr('action', '/movies/<%= @movie.id %>/reviews/-1')
