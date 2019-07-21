@@ -42,7 +42,11 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.permit(:rating, :comment, :movie_id).merge!(user_id: current_user.id)
+    if params[:reviewer_id]
+      params.permit(:rating, :comment, :movie_id).merge!(user_id: params[:reviewer_id])
+    else
+      params.permit(:rating, :comment, :movie_id).merge!(user_id: current_user.id)
+    end
   end
 
   def allow_deletion?
