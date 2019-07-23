@@ -132,7 +132,7 @@ class MoviesController < ApplicationController
       if params[:genre] == 'Genre'
         @result = Movie.where('lower(title) LIKE ?', "%#{params[:search_text]}%".downcase).limit(5).page params[:page]
       else
-        @result = Movie.where('title LIKE ? AND genre = ?', "%#{params[:search_text]}%", params[:genre]).limit(5).page params[:page]
+        @result = Movie.where('lower(title) ? AND genre = ?', "%#{params[:search_text]}%".downcase, params[:genre]).limit(5).page params[:page]
       end
     else
       @result = []
