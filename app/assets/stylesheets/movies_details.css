@@ -51,6 +51,7 @@
 /* styles for movie show page*/
 .movie_poster {
   height: 320px !important;
+  width: 340px !important;
   width: fit;
 }
 
