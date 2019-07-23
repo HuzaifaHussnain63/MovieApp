@@ -13,7 +13,7 @@ nav .dropdown-item:hover {
   background-color: #1B201F !important;
 }
 
-nav.bg-dark{
+nav.bg-dark, .footer-row{
   background-color: #101010 !important;
 }
 
@@ -104,4 +104,13 @@ a {
 /* Styles for golden and favourite star */
 i.favourite-star.golden-star:hover {
   color: #3E4745 !important;
+}
+
+hr {
+  border-color: white !important;
+  border: 2px
+}
+
+.above-footer {
+  height: 160px !important;
 }

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'movie/favourite/:id/:movie_id', to: 'users#add_favourite', as: :add_favourite
   get 'movie/remove_favourite/:id/:movie_id', to: 'users#remove_favourite', as: :remove_favourite
   post 'movie/search_movie', to: 'movies#search_movie', as: :search_movie
+  get 'movieApp/about', to: 'staticpages#about', as: :about
 
   devise_for :users
 
