@@ -27,7 +27,7 @@ body, .card {
   background-color: #101010 !important;
 }
 
-div.row, .card {
+div.row, .card, div.col-lg-6 {
   border-color: #101010 !important;
 }
 

@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_admin, except: [:show, :search_movie]
+  before_action :authenticate_admin, except: [:show, :search_movie, :index]
   before_action :set_movie, except: [:new, :create, :index, :search_movie]
   before_action :set_actor, only: [:detach_actor, :attach_actor]
 

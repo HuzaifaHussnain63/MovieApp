@@ -1,4 +1,4 @@
-$('.movie_actors').append("<%= j render partial: 'attach_actor', locals: { actor: @actor } %>")
+$('.all_movie_actors').append("<%= j render partial: 'attaching_actor', locals: { actor: @actor } %>")
 $('#addActorModel').modal('toggle')
 $('#addActorModel').find('.modal-body').html("")
 $('#addActorModel').find('.modal-body').append("<%= escape_javascript(render 'updating_actors_available') %>")

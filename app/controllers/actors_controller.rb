@@ -18,7 +18,6 @@ class ActorsController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def destroy
@@ -39,9 +38,6 @@ class ActorsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def show
   end
 
   private

@@ -1,5 +1,7 @@
 <%= form_with(model: @user, url: form_path, method: form_method, id: 'admin_user_form',  local: true) do |f| %>
 
+  <%= image_tag url_for(@user.avatar), class: 'rounded-circle profile_picture offset-lg-4' if form_method == :patch %>
+
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
@@ -31,12 +33,11 @@
   <div class="form-group">
     <%= f.label 'Profile Picture' %>
     <div class='clearfix'></div>
-     <%= image_tag url_for(@user.avatar), class: 'rounded-circle profile_picture' if form_method == :patch %>
     <%= f.file_field :avatar, class: 'form-control', accept: 'image/*' %>
   </div>
 
   <div class="actions">
-    <%= f.submit button_text, class: 'btn btn-primary' %>
+    <%= f.submit button_text, class: 'btn btn-primary mb-3' %>
   </div>
 
 <% end %>

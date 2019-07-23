@@ -1,6 +1,6 @@
 $(document).ready(function(){
   jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z]+$/i.test(value);
+    return this.optional(element) || /^[a-z\-]+$/i.test(value);
   }, "Letters only please");
 
   $('#movie_form').validate({
