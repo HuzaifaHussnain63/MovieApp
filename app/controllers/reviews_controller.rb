@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     else
       flash[:danger] = 'Could not delete the review'
     end
-    redirect_to movie_path(@movie)
+
   end
 
   def update

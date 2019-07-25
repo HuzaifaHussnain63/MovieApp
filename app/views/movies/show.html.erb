@@ -11,10 +11,9 @@
         <h6 class='movie-rating'><span class="fa fa-star golden-star pr-2"></span><%= @movie.rating.round(1) %> / 5.0</h6>
         <h5 class='mt-5 movie-description'><%= raw @movie.description %></h5>
 
-        <% if user_signed_in? && allow_posting_review(current_user, @movie) %>
-          <h2 class='pt-5 review-form-row adding'>Add Review</h2>
-          <%= render partial: 'reviews/review_form', locals: { id: 'new', request_method: :post, button_text: 'Post Review', remote: true, object: @review, form_class: 'adding', path: movie_reviews_path(@movie.id) } %>
-        <% end %>
+        <div class='new-review-form'>
+          <%= render 'reviews/add_review_form' %>
+        </div>
 
       </div>
 
