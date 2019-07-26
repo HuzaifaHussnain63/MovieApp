@@ -1,10 +1,6 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation">
-    <h4>Following error(s) occured:</h4>
-    <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% resource.errors.full_messages.each do |message| %>
+   <% flash[:devise] = message %>
+  <% end %>
+  <% render 'shared/flash_messages' %>
 <% end %>

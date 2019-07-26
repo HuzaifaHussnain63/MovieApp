@@ -5,6 +5,7 @@ module ApplicationHelper
 
   def flash_alert_class(key)
     return 'alert-success' if key == 'notice'
+    return 'alert-warning col-lg-6 offset-lg-3' if key == 'devise'
     return 'alert-warning'
   end
 

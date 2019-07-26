@@ -3,19 +3,19 @@
     <% if @actors.any? %>
       <h2 class='p-3'>Actors <%= link_to fa_icon('user-plus 2x'), new_actor_path, class: 'pull-right' %></h2>
       <% @actors.each do |actor| %>
-        <div class='movie_cast pt-3 border-bottom pb-2'>
+        <div class='movie_cast pt-3 pb-2 border-bottom'>
           <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
           <%= actor.name %>
           <%= link_to fa_icon('trash 2x', class: 'pull-right pt-5'), actor_path(actor), method: :delete, data: { confirm: 'Are you sure you want to delete this Actor?' } %>
           <%= link_to fa_icon('edit  2x', class: 'pull-right pt-5'), edit_actor_path(actor) %>
         </div>
       <% end %>
+    <% else %>
+        <h2 class='p-3'>Add Actors <%= link_to fa_icon('user-plus 2x'), new_actor_path, class: 'pull-right' %>
     <% end %>
-  </div>
-</div>
-<div class='row'>
-  <div class='col-lg-12'>
-    <%= paginate @actors, window: 2 %>
-  </div>
-</div>
 
+    <div class='col-lg-12'>
+      <%= paginate @actors, window: 2 %>
+    </div>
+  </div>
+</div>

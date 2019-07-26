@@ -111,6 +111,27 @@ hr {
   border: 2px
 }
 
-.above-footer {
-  height: 160px !important;
+/* Styles for footer */
+html, body {
+  height: 100%
+}
+
+body {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.container {
+  flex: 1 0 auto !important;
+}
+.footer-row {
+  flex-shrink: 0 !important;
+}
+#search_suggestion {
+  font-weight: 100 !important;
+}
+
+/* Styles for highlighting while searching */
+span.highlight {
+  font-weight: 800!important;
+  color: #CFD9CE
 }

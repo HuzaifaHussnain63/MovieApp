@@ -71,11 +71,13 @@ $(document).ready(function(){
         required: true,
         email: true
       },
+      "user[avatar]": "required",
     },
 
     messages: {
       "user[name]": "Please provide your name.",
-      "user[email]": "Email address should be of format 'abc@domain.com' "
+      "user[email]": "Email address should be of format 'abc@domain.com'",
+      "user[avatar]": "Please select a profile picture."
     }
   })
 
@@ -87,6 +89,60 @@ $(document).ready(function(){
 
     messages: {
       "actor[name]": "Please provide actor name.",
+    }
+  })
+
+  /* Validations for editing profile */
+  $('#edit_user').validate({
+    rules: {
+      "user[name]": "required",
+      "user[email]": {
+        required: true,
+        email: true
+      },
+      "user[password]": {
+        minlength: 6,
+      },
+      "user[password_confirmation]": {
+        minlength: 6,
+      },
+      "user[current_password]": {
+        minlength: 6,
+        required: true
+      },
+    },
+
+    messages: {
+      "actor[name]": "Please provide your name.",
+      "user[current_password]": "Current Password cannot be blank."
+    }
+  })
+
+  /* Vallidations for forget password */
+  $('#new_user[action="/users/password"]').validate({
+    rules: {
+      "user[email]": {
+        required: true,
+        email: true
+      }
+    },
+
+    messages: {
+      "user[email]": "Email address should be of format 'abc@domain.com'",
+    }
+  })
+
+  /* Validations for resend confirmation */
+   $('#new_user[action="/users/confirmation"]').validate({
+    rules: {
+      "user[email]": {
+        email: true,
+        required: true
+      }
+    },
+
+    messages: {
+      "user[email]": "Email address should be of format 'abc@domain.com'",
     }
   })
 

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'reviews/:id/report', to: 'report_reviews#report', as: :report_review
   get 'reported_reviews', to: 'report_reviews#index', as: :reported_reviews
   delete 'reported_review/:id/remove', to: 'report_reviews#delete_complaint', as: :delete_complaint
+  delete 'reported_review/remove_all', to: 'report_reviews#delete_all_complaints', as: :delete_all_complaints
   get 'user/profile/:id', to: 'users#profile', as: :user_profile
   get 'movie/favourite/:id/:movie_id', to: 'users#add_favourite', as: :add_favourite
   get 'movie/remove_favourite/:id/:movie_id', to: 'users#remove_favourite', as: :remove_favourite

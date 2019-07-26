@@ -1,2 +1,5 @@
 $("div#search_suggestion").empty();
 $("div#search_suggestion").prepend("<%= escape_javascript(render 'search_result') %>");
+$('#search_suggestion').unhighlight();//Initally unhighlight
+$('#search_suggestion').highlight($('#search_text').val());//To highlight the text that is being typed
+

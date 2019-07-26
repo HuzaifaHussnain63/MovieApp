@@ -2,7 +2,7 @@
   <% if @result.any? %>
     <% @result.each do |movie| %>
       <%= link_to(movie_path(movie.id)) do %>
-        <li class='border-bottom pt-2 ml-0'><%= image_tag url_for(movie.thumbnail), class: 'movie-search p-2' %> <%= movie.title %></li>
+        <li class='border-bottom pt-2 ml-0 searched_item'><%= image_tag url_for(movie.thumbnail), class: 'movie-search p-2' %> <%= movie.title %></li>
       <% end %>
     <% end %>
   <% elsif params[:search_text] != '' %>
