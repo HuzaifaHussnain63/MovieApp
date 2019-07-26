@@ -25,13 +25,13 @@
 
       <% if @latest && @latest.any? %>
       <li class="nav-item">
-        <a class="nav-link mb-3" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="cast" aria-selected="true"><h5>Latest Release</h5></a>
+        <a class="nav-link mb-3 <%= show_nav_item?(@top_movies, nil) %>" id="latest-tab" data-toggle="tab" href="#latest" role="tab" aria-controls="cast" aria-selected="true"><h5>Latest Release</h5></a>
       </li>
       <% end %>
 
       <% if @upcoming && @upcoming.any? %>
       <li class="nav-item">
-        <a class="nav-link mb-3" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="photo" aria-selected="false"><h5>Upcoming</h5></a>
+        <a class="nav-link mb-3 <%= show_nav_item?(@latest, @top_movies) %> " id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="photo" aria-selected="false"><h5>Upcoming</h5></a>
       </li>
       <% end %>
     </ul>
@@ -49,7 +49,7 @@
       <% end %>
 
     <% if @latest %>
-      <div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+      <div class="tab-pane fade <%= show_tab_pane?(@top_movies, nil) %> " id="latest" role="tabpanel" aria-labelledby="latest-tab">
         <div class='row'>
           <% @latest.each do |movie| %>
             <%= render partial: 'movie_card', locals: { movie: movie } %>
@@ -59,7 +59,7 @@
     <% end %>
 
     <% if @upcoming %>
-      <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+      <div class="tab-pane fade <%= show_tab_pane?(@latest, @top_movies) %> " id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
         <div class='row'>
           <% @upcoming.each do |movie| %>
             <%= render partial: 'movie_card', locals: { movie: movie } %>
