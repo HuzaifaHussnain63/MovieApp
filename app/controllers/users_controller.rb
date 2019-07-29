@@ -2,19 +2,18 @@ class UsersController < ApplicationController
   before_action :set_user
   before_action :authenticate_user!
   before_action :allow_adding_removing_favourite?, only: [:add_favourite, :remove_favourite]
+  before_action :set_movie, only: [:add_favourite]
 
   def profile
     @favourite_movies = @user.favourites
   end
 
   def add_favourite
-    @movie = Movie.find(params[:movie_id])
     if current_user.favourites << @movie
       flash[:notice] = 'You have added this movie to your favourites.'
     else
       flash[:danger] = 'Could not add this movie to your favourites.'
     end
-
   end
 
   def remove_favourite
@@ -30,6 +29,10 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_movie
+    @movie = Movie.find(params[:movie_id])
   end
 
   def allow_adding_removing_favourite?

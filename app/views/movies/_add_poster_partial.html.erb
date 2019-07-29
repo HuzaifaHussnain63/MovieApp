@@ -1,4 +1,4 @@
 <div class='col-lg-4' id='poster_<%= poster.id %>'>
-  <%= link_to fa_icon('times 2x', class: 'pull-right pt-3'), remove_poster_from_movie_path(movie.id, poster.id), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this poster?' } if admin_logged_in?%>
+  <%= link_to fa_icon('times 2x', class: 'pull-right pt-3'), remove_poster_from_movie_path(movie.id, poster.id), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this poster?' } if admin_logged_in? %>
   <%= image_tag url_for(poster), class: 'img-fluid movie_poster pt-2' %>
 </div>

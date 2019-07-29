@@ -6,10 +6,8 @@
         <%= render partial: 'home/movie_card', locals: { movie: movie } %>
       <% end %>
     </div>
-
     <div class='col-lg-12 pt-4'>
       <%= paginate @movies, window: 2 %>
     </div>
-
   </div>
 </div>

@@ -1,8 +1,7 @@
 <h2 class='pl-2'>Actors<%= link_to fa_icon('user-plus 2x'), '#', class: 'pull-right', data: {toggle: 'modal', target: '#addActorModel'} if admin_logged_in? %></h2>
 <div class='all_movie_actors mt-5'>
 
-<% if @movie.actors.any? %>
-  <div class='col pt-3 movie_actors'>
+  <% if @movie.actors.any? %>
     <% @movie.actors.each do |actor| %>
       <div class='movie_cast pt-3 border-bottom pb-2' id='actor_<%= actor.id %>'>
         <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
@@ -12,8 +11,8 @@
         <% end %>
       </div>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+
 </div>
 
 <!-- adding actors to a movie, Bootstrap Modal -->

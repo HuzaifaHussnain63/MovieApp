@@ -1,11 +1,9 @@
 <div class="card m-3" id="card_<%= review.id %>">
   <div class="card-header">
     <%= review.user.name %>
-
     <% review.rating.times do |star| %>
       <span class="fa fa-star golden-star"></span>
     <% end %>
-
     <% (5 - review.rating).times do |star| %>
       <span class="fa fa-star"></span>
     <% end %>
@@ -16,12 +14,11 @@
       <%= link_to fa_icon('edit  2x', class: 'pull-right review-edit-button', id: review.id), '#',data: {toggle: 'modal', target: '#editReview'} %>
     <% end %>
     <% if user_signed_in? && !review.id.in?(reported_reviews_by_user) && current_user.id != review.user_id %>
-      <%= link_to 'report', report_review_path(review.id), class: 'pull-right', id: 'report_'+review.id.to_s, remote: true %>
+      <%= link_to 'Report', report_review_path(review.id), class: 'pull-right', id: 'report_'+review.id.to_s, remote: true %>
     <% end %>
     <input type="hidden" class="reviewer_id" value="<%= review.user.id %>">
-
   </div>
-  <% if review.comment != '' %>
+  <% unless review.comment.empty? %>
     <div class="card-body" id="review_<%= review.id %>">
       <%= review.comment %>
     </div>

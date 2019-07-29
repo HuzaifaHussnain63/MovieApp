@@ -10,17 +10,15 @@
         <h5><%= @movie.genre %></h5>
         <h6 class='movie-rating'><span class="fa fa-star golden-star pr-2"></span><%= @movie.rating.round(1) %> / 5.0</h6>
         <h5 class='mt-5 movie-description'><%= raw @movie.description %></h5>
-
         <div class='new-review-form'>
           <%= render 'reviews/add_review_form' %>
         </div>
-
       </div>
 
       <div class='col-lg-3 col-md-3'>
         <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
-        <%= link_to 'Delete', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure you want to this movie?' }, class: 'btn btn-primary float-right' %>
+          <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-primary float-right ml-2' %>
+          <%= link_to 'Delete', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure you want to this movie?' }, class: 'btn btn-primary float-right' %>
         <% end %>
 
         <% if user_signed_in? %>
@@ -30,7 +28,6 @@
             <h3 class='favourite-h'><%= link_to fa_icon('star ', class: 'pull-right favourite-star pr-2 pt-1 border-1'), add_favourite_path(current_user.id, @movie), remote: true %></h3>
           <% end %>
         <% end %>
-
       </div>
     </div>
 
@@ -47,7 +44,6 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
-
       <div class="tab-pane fade pl-4" id="cast" role="tabpanel" aria-labelledby="cast-tab">
         <%= render 'cast' %>
       </div>

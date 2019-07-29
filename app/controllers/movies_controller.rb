@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
   before_action :authenticate_admin, except: [:show, :search_movie, :index]
   before_action :set_movie, except: [:new, :create, :index, :search_movie]
   before_action :set_actor, only: [:detach_actor, :attach_actor]
+  before_action :actors_not_in_movie, only: [:show]
+  before_action :set_reported_reviews_by_user, only: [:show]
 
   def index
     @movies = Movie.order(release_date: :desc).page params[:page]
@@ -15,6 +17,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_param)
 
     if @movie.save
+      flash[:notice] = 'Successfully added a new movie.'
       redirect_to movie_path(@movie)
     else
       render 'new'
@@ -27,6 +30,7 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_param)
+      flash[:notice] = 'Successfully updated the movie details.'
       redirect_to movie_path(@movie)
     else
       render 'edit'
@@ -35,6 +39,7 @@ class MoviesController < ApplicationController
 
   def destroy
     if @movie.destroy
+      flash[:notice] = 'Successfully deleted the movie.'
       redirect_to home_index_path
     else
       flash[:danger] = 'Could not delete the movie'
@@ -43,32 +48,27 @@ class MoviesController < ApplicationController
   end
 
   def show
-    actors_not_in_movie
     @review = Review.new
-    if user_signed_in?
-      @reviews_reported_by_user = ReportedReview.where(user_id: current_user.id, movie_id: @movie.id).pluck(:review_id)
-    else
-      @reviews_reported_by_user = []
-    end
     @reviews = @movie.reviews.includes(:user).order(created_at: :desc).page params[:page]
   end
 
   def detach_actor
     unless @movie.actors.delete(@actor)
-      flash[:danger] = 'Could not remove the actor'
-      render 'reviews/create_error'
+      flash[:danger] = 'Could not remove the actor from movie cast.'
+      render 'shared/_display_flash'
     end
+    flash[:danger] = 'You have removed an actor from the movie.'
     actors_not_in_movie
-    render
   end
 
   # this action will add actor to movie cast
   def attach_actor
     if @movie.actors.include? @actor
-      flash[:danger] = 'Could not add the actor'
-      render 'reviews/create_error'
+      flash[:danger] = 'Could not add the actor to the movie cast.'
+      render 'shared/_display_flash'
     else
       @movie.actors << @actor
+      flash[:notice] = 'You have added an actor to the movie cast.'
     end
     actors_not_in_movie
   end
@@ -76,21 +76,19 @@ class MoviesController < ApplicationController
   def add_trailer
     if params[:adding_trailer]
       @trailer = params[:adding_trailer][:trailer]
-
       if @trailer.content_type.include?('video')
         @movie.trailer.attach(params[:adding_trailer][:trailer])
         set_movie # getting the upated movie object
+        flash[:notice] = 'Successfully added a trailer for movie.'
         render 'add_remove_trailer'
       else
-        flash["danger"] = 'Could not add trailer. Format for the trailer is not correct.'
-        render 'reviews/create_error'
+        flash[:danger] = 'Could not add trailer. Format for the trailer is not correct.'
+        render 'shared/_display_flash'
       end
-
     else
-      flash[:danger] = 'Please select a trailer'
-      render 'reviews/create_error'
+      flash[:danger] = 'Please select a trailer.'
+      render 'shared/_display_flash'
     end
-
   end
 
   # this action will detach trailer from a movie
@@ -98,10 +96,10 @@ class MoviesController < ApplicationController
     if @movie.trailer.attached?
       @movie.trailer.purge
       set_movie
-      render 'add_remove_trailer' # it will check if trailer exist, and if trailer does not exit it will make appropriate changes in the html
+      render 'add_remove_trailer'
     else
       flash[:danger] = 'Movie has no trailer to remove.'
-      render 'reviews/create_error'
+      render 'shared/_display_flash'
     end
   end
 
@@ -112,24 +110,23 @@ class MoviesController < ApplicationController
   def add_poster
     if params[:adding_poster]
       @poster = params[:adding_poster][:posters]
-
       if @poster.content_type.include?('image')
         @movie.posters.attach(params[:adding_poster][:posters])
         # to get the id of just added poster i m doing this:
         @added_poster = @movie.posters.last
       else
         flash[:danger] = 'Could not add poster. Format for the poster is invalid'
-        render 'reviews/create_error'
+        render 'shared/_display_flash'
       end
     else
       flash[:danger] = 'Please select a poster'
-      render 'reviews/create_error'
+      render 'shared/_display_flash'
     end
   end
 
   def search_movie
     if params[:search_text] != ''
-      if params[:genre] == 'Genre'
+      if params[:genre] == 'Genre' # means no specific genre is selected to filter the search
         @result = Movie.where('lower(title) LIKE ?', "%#{params[:search_text]}%".downcase).limit(5).page params[:page]
       else
         @result = Movie.where('lower(title) LIKE ? AND genre = ?', "%#{params[:search_text]}%".downcase, params[:genre]).limit(5).page params[:page]

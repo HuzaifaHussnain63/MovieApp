@@ -19,7 +19,6 @@ class Admin::UsersController < ApplicationController
     else
       flash[:danger] = 'Could not create a new user'
     end
-
     redirect_to admin_users_path
   end
 
@@ -38,7 +37,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:notice] = 'User Successfully removed.'
+    flash[:notice] = 'User Successfully deleted.'
     redirect_to admin_users_path
   end
 

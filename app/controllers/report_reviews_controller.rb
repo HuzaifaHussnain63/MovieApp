@@ -18,6 +18,7 @@ class ReportReviewsController < ApplicationController
 
   def delete_complaint
     ReportedReview.where(review_id: @review.id).destroy_all
+    flash[:notice] = 'You have deleted the complaint'
     redirect_to reported_reviews_path
   end
 
@@ -25,11 +26,6 @@ class ReportReviewsController < ApplicationController
     ReportedReview.destroy_all
     flash[:notice] = 'Successfully deleted all complaints'
     redirect_to reported_reviews_path
-  end
-
-  private
-  def set_review
-    @review = Review.find(params[:id])
   end
 
 end

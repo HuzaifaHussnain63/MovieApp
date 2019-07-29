@@ -8,16 +8,19 @@
           <div class="card-header">
             <%= reported.review.user.name %>
 
+            <!-- this loop will add the golden stars -->
             <% reported.review.rating.times do |star| %>
               <span class="fa fa-star golden-star"></span>
             <% end %>
 
+            <!-- this loop will add the black stars -->
             <% (5 - reported.review.rating).times do |star| %>
               <span class="fa fa-star"></span>
             <% end %>
             <span class='font-italic text-muted pl-3'>reported by</span>
             <%= reported.user.name %>
 
+            <!-- dropdown for possible actions on a reported review -->
             <div class="dropdown pull-right">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Actions
@@ -29,7 +32,7 @@
             </div>
           </div>
 
-          <% if reported.review.comment != '' %>
+          <% unless reported.review.comment.empty? %>
             <div class="card-body">
               <%= reported.review.comment %>
             </div>
