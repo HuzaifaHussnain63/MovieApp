@@ -1,4 +1,4 @@
 $('#actor_<%= @actor.id %>').remove()
 $('#addActorModel').find('.modal-body').html("")
 $('#addActorModel').find('.modal-body').append("<%= escape_javascript(render 'updating_actors_available') %>")
-<%= render 'shared/display_flash' %>
+

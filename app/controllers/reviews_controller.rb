@@ -20,7 +20,6 @@ class ReviewsController < ApplicationController
 
   def destroy
     if @review.destroy
-      flash[:notice] = 'Successfully deleted the review'
       find_movie
       respond_to do |format|
         format.js { render }

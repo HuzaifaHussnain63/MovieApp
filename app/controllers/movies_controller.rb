@@ -57,18 +57,16 @@ class MoviesController < ApplicationController
       flash[:danger] = 'Could not remove the actor from movie cast.'
       render 'shared/_display_flash'
     end
-    flash[:danger] = 'You have removed an actor from the movie.'
     actors_not_in_movie
   end
 
   # this action will add actor to movie cast
   def attach_actor
     if @movie.actors.include? @actor
-      flash[:danger] = 'Could not add the actor to the movie cast.'
+      flash[:danger] = 'This actor is already in the movie cast.'
       render 'shared/_display_flash'
     else
       @movie.actors << @actor
-      flash[:notice] = 'You have added an actor to the movie cast.'
     end
     actors_not_in_movie
   end
@@ -79,7 +77,6 @@ class MoviesController < ApplicationController
       if @trailer.content_type.include?('video')
         @movie.trailer.attach(params[:adding_trailer][:trailer])
         set_movie # getting the upated movie object
-        flash[:notice] = 'Successfully added a trailer for movie.'
         render 'add_remove_trailer'
       else
         flash[:danger] = 'Could not add trailer. Format for the trailer is not correct.'
