@@ -122,14 +122,14 @@ class MoviesController < ApplicationController
   end
 
   def search_movie
-    if params[:search_text] != ''
+    if params[:search_text].blank?
+      @result = []
+    else
       if params[:genre] == 'Genre' # means no specific genre is selected to filter the search
         @result = Movie.where('lower(title) LIKE ?', "%#{params[:search_text]}%".downcase).limit(5).page params[:page]
       else
         @result = Movie.where('lower(title) LIKE ? AND genre = ?', "%#{params[:search_text]}%".downcase, params[:genre]).limit(5).page params[:page]
       end
-    else
-      @result = []
     end
     @genres = Movie.all.distinct.pluck(:genre)
     @genres.prepend("Genre")

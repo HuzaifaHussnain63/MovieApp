@@ -8,6 +8,7 @@ class ReportReviewsController < ApplicationController
         flash[:notice] = 'You have successfully reported the review'
       else
         flash[:danger] = 'Could not report the review.'
+        render 'shared/_display_flash' # this will show the error
       end
     end
   end

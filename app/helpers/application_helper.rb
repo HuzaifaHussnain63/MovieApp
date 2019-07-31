@@ -8,5 +8,4 @@ module ApplicationHelper
     return 'alert-warning col-lg-6 offset-lg-3' if key == 'devise'
     return 'alert-warning'
   end
-
 end

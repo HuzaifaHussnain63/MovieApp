@@ -1,6 +1,6 @@
 /* Movie Search result */
 div#search_suggestion > ul {
-  background-color: #0F0F0F ;
+  background-color: #0F0F0F;
   color: #BCB5A9 !important;
   list-style: none !important;
 }
@@ -15,7 +15,7 @@ div#search_suggestion li a:hover {
 
 select[name="genre"] {
   background-color: #1C201F !important;
-  color: #BCB5A9 !important ;
+  color: #BCB5A9 !important;
 }
 select[name="genre"] option {
   background-color: #0F0F0F;

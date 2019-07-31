@@ -4,7 +4,6 @@ $(document).ready(function(){
   $('body').on('click', function(){
     $('div#search_suggestion').empty()
   })
-
 });
 
 var search_ajax = function(){
@@ -16,9 +15,8 @@ var search_ajax = function(){
     type: 'POST',
     data: { utf: utf, authenticity_token: token, search_text: search_text, genre: $('#genre').find(":selected").text() }
   })
-
-
 }
+
 /* Js for flash messages */
 $(document).ready(function(){
   $(".alert").delay(3000).fadeOut("slow");

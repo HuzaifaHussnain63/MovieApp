@@ -15,7 +15,6 @@ class ReviewsController < ApplicationController
       flash[:danger] = 'Could not post the review. Try again.'
       render 'shared/_display_flash'
     end
-
   end
 
   def destroy

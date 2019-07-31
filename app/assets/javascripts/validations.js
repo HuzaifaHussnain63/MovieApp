@@ -145,5 +145,4 @@ $(document).ready(function(){
       "user[email]": "Email address should be of format 'abc@domain.com'",
     }
   })
-
 });
