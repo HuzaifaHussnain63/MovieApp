@@ -1,0 +1,10 @@
+$(".reviews").prepend("<%= escape_javascript(render partial: 'movies/review', locals: { review: @review, reported_reviews_by_user: @reviews_reported_by_user }) %>");
+$('.review-form-row.adding').remove();
+<%= render 'shared/display_flash' %>
+$(".movie-rating").html("<span class='fa fa-star golden-star pr-2'></span><%= @movie.rating.round(1) %> / 5.0")
+$('#review-tab').addClass('active')
+$('#reviews').addClass('show active')
+$('#cast-tab').removeClass('active')
+$('#photo-tab').removeClass('active')
+$('#photos').removeClass('show active')
+$('#cast').removeClass('show active')

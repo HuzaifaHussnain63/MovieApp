@@ -1,0 +1,5 @@
+$('#card_<%= @review.id %>').remove()
+<% @review = Review.new %>
+$('.new-review-form').prepend("<%= escape_javascript(render 'add_review_form') %>")
+<%= render 'shared/display_flash' %>
+$(".movie-rating").html("<span class='fa fa-star golden-star pr-2'></span><%= @movie.rating.round(1) %> / 5.0")

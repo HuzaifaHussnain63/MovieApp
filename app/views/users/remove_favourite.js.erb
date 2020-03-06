@@ -1,0 +1,4 @@
+<%= render 'shared/display_flash' %>
+$(".favourite-h a").attr('href', "<%= add_favourite_path(params[:id], params[:movie_id]) %>")
+$(".single_movie_list#movie_<%= params[:movie_id] %>").remove();
+$(".favourite-h i").removeClass("golden-star")

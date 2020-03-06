@@ -1,0 +1,10 @@
+img.user-profile {
+  width: 230px !important;
+  height: 230px !important;
+}
+
+/* Styes for favourites movie listing */
+img.movie-listing {
+  width: 80px !important;
+  height: 80px !important;
+}

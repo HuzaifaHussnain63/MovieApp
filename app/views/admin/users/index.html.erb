@@ -1,0 +1,24 @@
+<div class='row border pt-2 mt-2'>
+  <div class='col-lg-12'>
+    <h2 class='pl-2'>Users<%= link_to fa_icon('user-plus 2x'), new_admin_user_path, class: 'pull-right' if admin_logged_in? %></h2>
+    <% if @users.any? %>
+      <div class='col pt-3'>
+        <% @users.each do |user| %>
+          <div class='user-small pt-3 border-bottom pb-2'>
+            <%= image_tag url_for(user.avatar), class: 'rounded-circle' if user.avatar.attached? %>
+            <%= link_to user.name, user_profile_path(user.id) %>
+            <% if admin_logged_in? %>
+              <%= link_to fa_icon('trash 2x', class: 'pull-right pt-5'), admin_user_path(user.id), method: :delete, data: { confirm: 'Are you sure you want to delete this User?' } %>
+              <%= link_to fa_icon('edit  2x', class: 'pull-right pt-5'), edit_admin_user_path(user.id) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class='col-lg-12 pt-3'>
+      <%= paginate @users %>
+    </div>
+
+  </div>
+</div>

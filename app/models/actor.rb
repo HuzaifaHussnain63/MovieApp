@@ -8,6 +8,8 @@ class Actor < ApplicationRecord
 
   has_one_attached :picture
 
+  validates :picture, presence: true, blob: { content_type: :image }
+
   paginates_per 5
 
   private

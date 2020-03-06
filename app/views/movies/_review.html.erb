@@ -1,0 +1,26 @@
+<div class="card m-3" id="card_<%= review.id %>">
+  <div class="card-header">
+    <%= review.user.name %>
+    <% review.rating.times do |star| %>
+      <span class="fa fa-star golden-star"></span>
+    <% end %>
+    <% (5 - review.rating).times do |star| %>
+      <span class="fa fa-star"></span>
+    <% end %>
+    <% if allow_review_deletion?(review) %>
+      <%= link_to fa_icon('trash 2x', class: 'pull-right'), movie_review_path(review.movie_id, review), remote: true, method: :delete, data: { confirm: 'Are you sure you want to delete this review?' } %>
+    <% end %>
+    <% if user_signed_in? && (current_user.id == review.user.id || current_user.admin) %>
+      <%= link_to fa_icon('edit  2x', class: 'pull-right review-edit-button', id: review.id), '#',data: {toggle: 'modal', target: '#editReview'} %>
+    <% end %>
+    <% if user_signed_in? && !review.id.in?(reported_reviews_by_user) && current_user.id != review.user_id %>
+      <%= link_to 'Report', report_review_path(review.id), class: 'pull-right', id: 'report_'+review.id.to_s, remote: true %>
+    <% end %>
+    <input type="hidden" class="reviewer_id" value="<%= review.user.id %>">
+  </div>
+  <% unless review.comment.empty? %>
+    <div class="card-body" id="review_<%= review.id %>">
+      <%= review.comment %>
+    </div>
+  <% end %>
+</div>

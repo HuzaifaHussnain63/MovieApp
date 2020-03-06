@@ -1,0 +1,7 @@
+<div class='movie_cast pt-3 border-bottom pb-2' id='actor_<%= actor.id %>'>
+  <%= image_tag url_for(actor.picture), class: 'rounded-circle' %>
+  <%= actor.name %>
+  <% if admin_logged_in? %>
+    <%= link_to fa_icon('trash 2x', class: 'pull-right pt-5'), detach_actor_from_movie_path(@movie.id, actor.id), remote: true, method: :delete, data: { confirm: 'Are you sure you want to remove this actor from movie cast?' } %>
+  <% end %>
+</div>

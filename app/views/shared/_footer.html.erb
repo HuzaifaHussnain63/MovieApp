@@ -1,0 +1,37 @@
+<div class='above-footer mb-5 pb-5'>
+
+</div>
+<div class='row footer-row mt-5 pb-5 mr-0'>
+    <div class='col-lg-2 ml-5 mt-5'>
+      <h2>MovieApp</h2>
+      <h6 class='pt-0'>The only movie website you need.</h6>
+    </div>
+    <div class='col-lg-2  mt-5'>
+      <h6><%= link_to 'About', about_path %></h6>
+      <h6>Contact us</h6>
+      <h6>Meet the team</h6>
+    </div>
+    <div class='col-lg-2  mt-5'>
+      <h6><%= link_to 'Sign in', new_user_session_path %></h6>
+      <h6><%= link_to 'Create account', new_user_registration_path %></h6>
+      <h6><%= link_to 'Movies', movies_path %></h6>
+    </div>
+    <div class='col-lg-4 offset-lg-0 mt-5'>
+      <h2 class='text-center'>Hear from us!</h2>
+      <form class='form-inline'>
+        <input type="text" placeholder="Your email" class='form-control col-lg-9 offset-lg-1'>
+        <button class='btn btn-primary subscribe-btn'>Subscribe</button>
+      </form>
+    </div>
+    <div class='col-lg-6 offset-lg-3 mt-5'>
+      <hr>
+      <div class='col-lg-6 offset-lg-3'>
+        <%= fa_icon('facebook 2x',class: 'p-4') %>
+        <%= fa_icon('twitter 2x',class: 'p-4') %>
+        <%= fa_icon('instagram 2x',class: 'p-4') %>
+        <%= fa_icon('google 2x',class: 'p-4') %>
+        <%= fa_icon('youtube 2x',class: 'p-4') %>
+      </div>
+      <p class='text-center'>&copy Copyrights. All rights reserved.</p>
+    </div>
+</div>

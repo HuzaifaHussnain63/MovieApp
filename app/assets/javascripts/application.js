@@ -16,5 +16,11 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require_tree .
+//= require_self
+//= require jquery.validate.additional-methods
+//= require jquery.validate
+$(document).ready(function(){
+  $(".alert").delay(3000).fadeOut("slow");
+});
+

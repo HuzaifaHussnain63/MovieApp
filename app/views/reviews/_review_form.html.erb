@@ -1,0 +1,23 @@
+ <div class='row review-form-row <%= form_class %>'>
+  <div class='col-lg-12'>
+    <%= form_for object, url: path, remote: remote, method: request_method, html: { id: id+'_review_form' } do |form| %>
+      <div class='form-group'>
+        <fieldset class="rating form-cntrol">
+          <input type="radio" id="<%= id %>star5" name="rating" value="5" class='star' /><label class = "full" for="<%= id %>star5" title="Awesome - 5 stars"></label>
+          <input type="radio" id="<%= id %>star4" name="rating" value="4" class='star' /><label class = "full" for="<%= id %>star4" title="Pretty good - 4 stars"></label>
+          <input type="radio" id="<%= id %>star3" name="rating" value="3" class='star' /><label class = "full" for="<%= id %>star3" title="Meh - 3 stars"></label>
+          <input type="radio" id="<%= id %>star2" name="rating" value="2" class='star' /><label class = "full" for="<%= id %>star2" title="Kinda bad - 2 stars"></label>
+          <input type="radio" id="<%= id %><%= id %>star1" name="rating" value="1" class='star' /><label class = "full" for="<%= id %>star1" title="Sucks big time - 1 star"></label>
+        </fieldset>
+
+      </div>
+      <div class='clearfix'></div>
+      <div class='form-group'>
+        <%= form.label :comment %>
+        <%= form.text_area :comment, name: :comment, class: 'form-control', placeholder: 'Write your comment here (optional)...' %>
+      </div>
+
+      <%= form.submit button_text, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

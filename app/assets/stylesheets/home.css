@@ -1,0 +1,33 @@
+/* Movie Search result */
+div#search_suggestion > ul {
+  background-color: #0F0F0F;
+  color: #BCB5A9 !important;
+  list-style: none !important;
+}
+
+div#search_suggestion li:hover {
+  background-color: #1C201F !important;
+}
+
+div#search_suggestion li a:hover {
+  text-decoration: none !important;
+}
+
+select[name="genre"] {
+  background-color: #1C201F !important;
+  color: #BCB5A9 !important;
+}
+select[name="genre"] option {
+  background-color: #0F0F0F;
+  color: #BCB5A9 !important;
+}
+
+select[name="genre"] option:hover {
+  background-color: #1C201F !important;
+}
+
+/* Styles for movie search result */
+.movie-search {
+  width: 40px !important;
+  height: 60px !important;
+}

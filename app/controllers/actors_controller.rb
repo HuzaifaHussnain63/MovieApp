@@ -14,18 +14,19 @@ class ActorsController < ApplicationController
     @actor = Actor.new(actor_params)
 
     if @actor.save
-      redirect_to actor_path(@actor)
+      flash[:notice] = 'Successfully created an actor.'
+      redirect_to actors_path
     else
       render 'new'
     end
-
   end
 
   def destroy
     if @actor.destroy
+      flash[:notice] = 'Successfully deleted an actor.'
       redirect_to actors_path
     else
-      flash[:danger] = 'Could not delete the actor'
+      flash[:danger] = 'Could not delete the actor. Try Again.'
       redirect_to actor_path(@actor)
     end
   end
@@ -35,13 +36,11 @@ class ActorsController < ApplicationController
 
   def update
     if @actor.update(actor_params)
+      flash[:notice] = 'Successfully updated actor details.'
       redirect_to actors_path
     else
       render 'edit'
     end
-  end
-
-  def show
   end
 
   private

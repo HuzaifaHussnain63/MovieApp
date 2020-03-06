@@ -1,23 +1,23 @@
 <div class='row'>
-  <div class='col-lg-12'>
+  <div class='col-lg-12 trailer-div'>
     <% if @movie.trailer.attached? %>
-      <h2 class='pt-3'>Trailer<%= link_to fa_icon('minus-circle', class: 'pull-right pb-5'), remove_trailer_from_movie_path(@movie.id, @movie.trailer.id), method: :delete if admin_logged_in? %></h2>
+      <h2 class='pt-3'>Trailer<%= link_to fa_icon('times', class: 'pull-right pb-5'), remove_trailer_from_movie_path(@movie.id, @movie.trailer.id), remote: true, method: :delete, data: { confirm: 'Are you sure you want to delete this trailer?' } if admin_logged_in? %></h2>
       <div class='col-12 embed-responsive embed-responsive-16by9'>
         <%= video_tag rails_blob_path(@movie.trailer), controls: true, class: 'embed-responsive-item' %>
       </div>
     <% elsif admin_logged_in? %>
-      <h3 class='pt-3'>Trailer<%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right pb-5', data: {toggle: 'modal', target: '#addTrailerModel'} %></h3>
+      <h3 class='pt-3'>Trailer<%= link_to fa_icon('plus 2x'), '#', class: 'pull-right pb-5', data: {toggle: 'modal', target: '#addTrailerModel'} %></h3>
     <% end %>
   </div>
 </div>
 
-<div class='row'>
+<div class='row movie_posters'>
   <!-- displaying posters -->
-  <h2 class='pt-3 col-lg-12'>Posters <%= link_to fa_icon('plus-circle 2x'), '#', class: 'pull-right pb-3', data: {toggle: 'modal', target: '#addPosterModel'} if admin_logged_in? %></h2>
+  <h3 class='pt-3 col-lg-12'>Posters <%= link_to fa_icon('plus 2x'), '#', class: 'pull-right pb-3', data: {toggle: 'modal', target: '#addPosterModel'} if admin_logged_in? %></h3>
   <% @movie.posters.each do |poster| %>
-    <div class='col-lg-4'>
-      <%= link_to fa_icon('minus-circle 2x', class: 'pull-right pb-2 pt-3'), remove_poster_from_movie_path(@movie.id, poster.id), method: :delete if admin_logged_in?%>
-      <%= image_tag url_for(poster), class: 'img-fluid movie_poster' %>
+    <div class='col-lg-4 pb-3' id='poster_<%= poster.id %>'>
+      <%= link_to fa_icon('times 2x', class: 'pull-right pt-3'), remove_poster_from_movie_path(@movie.id, poster.id), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this poster?' } if admin_logged_in?%>
+      <%= image_tag url_for(poster), class: 'img-fluid movie_poster pt-2' %>
     </div>
   <% end %>
 </div>
@@ -32,10 +32,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_for :adding_trailer, url: :add_trailer_to_movie do |form| %>
+      <%= form_for :adding_trailer, remote: true, url: :add_trailer_to_movie do |form| %>
         <%= hidden_field_tag('id', @movie.id) %>
         <div class="modal-body">
-          <%= form.file_field :trailer, class: 'form-control' %>
+          <%= form.file_field :trailer, class: 'form-control', accept: 'video/*' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -56,10 +56,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_for :adding_poster, url: :add_poster_to_movie do |form| %>
+      <%= form_for :adding_poster,id: 'adding_poster_form', url: :add_poster_to_movie, remote: true do |form| %>
         <%= hidden_field_tag('id', @movie.id) %>
         <div class="modal-body">
-          <%= form.file_field :posters, multiple: true, class: 'form-control' %>
+          <%= form.file_field :posters, required: true, class: 'form-control', accept: 'image/*' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

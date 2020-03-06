@@ -1,0 +1,137 @@
+  /* Styles for navbar */
+nav .dropdown-item,.dropdown-menu.review-action  {
+  background-color: #101010;
+  color: #BCB5A9 !important;
+}
+
+nav .dropdown-item:hover {
+  background-color: #1B201F;
+  color: white !important;
+}
+
+.nav-item:hover {
+  background-color: #1B201F !important;
+}
+
+nav.bg-dark, .footer-row{
+  background-color: #101010 !important;
+}
+
+/* Styles for different cards like reveiw card, Movie Card*/
+body, .card {
+  background-color: #1B201F !important;
+  color: #BCB5A9 !important;
+}
+
+.card-header {
+  background-color: #101010 !important;
+}
+
+div.row, .card, div.col-lg-6 {
+  border-color: #101010 !important;
+}
+
+a.fa {
+  background-color: #1B201F !important;
+}
+
+/* Styles for movie description text*/
+.movie-description p span[style] {
+  background-color: #1B201F !important;
+  color: #BCB5A9 !important;
+}
+
+/* Styles for buttons */
+.btn-primary {
+  background-color: #3E4745 !important ;
+  border: none !important;
+}
+
+.btn-primary:hover {
+   background-color: #101010 !important;
+}
+
+/* Styles for forms */
+.row.adding textarea {
+  background-color: #1B201F;
+  color: #BCB5A9;
+}
+
+input[type=text], input[type=file], input[type=date], input[type=email], input[type=password] {
+  background-color: #1B201F;
+}
+
+div.modal {
+  color: black;
+}
+
+/* Styles for nav tabs on movie show page and homepage*/
+.nav-tabs .nav-link.active,.nav-tabs .nav-link:hover  {
+  background-color: #101010 !important;
+  color: #BCB5A9 !important;
+  border: none !important;
+}
+
+.nav-tabs .nav-link {
+  color: #BCB5A9;
+}
+
+a {
+  color: #BCB5A9 !important;
+}
+
+.card, .container > .row > div {
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for paginator */
+.page-item a {
+  background-color: #3E4745 !important;
+}
+
+.page-item.active a {
+  background-color: #0F0F0F  !important;
+}
+
+.page-item a {
+  border-color: #0F0F0F !important;
+}
+ /* styles for errors */
+.error {
+  color: red !important;
+}
+
+/* Styles for golden and favourite star */
+i.favourite-star.golden-star:hover {
+  color: #3E4745 !important;
+}
+
+hr {
+  border-color: white !important;
+  border: 2px
+}
+
+/* Styles for footer */
+html, body {
+  height: 100%
+}
+
+body {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.container {
+  flex: 1 0 auto !important;
+}
+.footer-row {
+  flex-shrink: 0 !important;
+}
+#search_suggestion {
+  font-weight: 100 !important;
+}
+
+/* Styles for highlighting while searching */
+span.highlight {
+  font-weight: 800!important;
+  color: #CFD9CE
+}

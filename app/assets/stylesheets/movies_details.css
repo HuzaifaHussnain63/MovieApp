@@ -13,7 +13,7 @@
 }
 
 .movie_thumbnail {
-  width: 220px !important;
+  width: 360px !important;
   height: 320px !important;
 }
 
@@ -51,6 +51,7 @@
 /* styles for movie show page*/
 .movie_poster {
   height: 320px !important;
+  width: 340px !important;
   width: fit;
 }
 
@@ -63,4 +64,18 @@
 /* Styles for movie index page*/
 .pagination {
   justify-content: center;
+}
+
+/* Style for favourite star*/
+.favourite-star{
+  color: gold;
+}
+
+/* Styles for fa icons*/
+i.fa {
+  color: #ABC4BA;
+}
+
+i.fa:hover{
+  color: #5D6B66 !important;
 }
